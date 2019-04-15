@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+    <div class="students">
+        {% for student in students %} 
+
+        <div class="student"><a href="{% url '' %}">{{ student.name }}</a></div>
+        
+        {% endfor %}
+    </div>
+{% else %}
+        <div class="welcome"><h4><a href="{% url 'auth_login' %}">Login</a>
+{% endif %}
