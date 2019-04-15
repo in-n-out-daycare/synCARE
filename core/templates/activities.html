@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="all_buttons">
+    <button><a href="{% url 'food' %}" class="in_button">In</a></button>
+    <button><a href="#" class="nap_button">Nap</a></button>
+    <button><a href="{% url 'diaper' %}" class="out_button">Out</a></button>
+</div>
+
+{% endblock %}
