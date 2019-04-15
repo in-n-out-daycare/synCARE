@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block meta %}{% endblock %}
+    <title>{% block title %}In-N-Out{% endblock %}</title>
+</head>
+
+<header class="title_bar">
+    <div class="home"><h4>HOME</h4></div>
+    <h1 class="title">In-N-Out</h1>
+    {% if user.is_authenticated %}
+        <div class="username"><h4><a href="{% url 'user_profile' user.username %}">{{ user.get_username }}</a> | 
+        <a href="{% url 'auth_logout' %}">Logout</a></h4></div>
+
+    {% else %}
+        <div class="login"><h4><a href="{% url 'auth_login' %}">Login</a> |
+        <a href="{% url 'registration_register' %}">Register</a></h4></div>
+    {% endif %}
+
+</header>
+
+<body>
+{% block content %}{% endblock %}
+</body>
+
+</html>
