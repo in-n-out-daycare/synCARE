@@ -1,0 +1,30 @@
+
+.students {
+    display: flex;
+    border-style:dotted;
+    border-radius: 7px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+  
+.student {
+    width: 15%;
+    height: 80px;
+    border-style: groove;
+    border-color: red;
+    border-radius: 20px;
+    margin: 25px;
+    padding: 25px;
+    padding-top: 75px;
+    text-align: center;
+    transition: all .3s ease;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+.student:hover {
+    border: solid;
+    background-color: lightgreen;
+    color:white;
+}
