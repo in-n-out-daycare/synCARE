@@ -12,7 +12,7 @@
         {% endfor %}
     </div>
 {% else %}
-        <div class="welcome"><h4><a href="{% url 'auth_login' %}">Login</a>
+        <div class="welcome"><h4><a href="{% url 'account_login' %}">Login</a>
 {% endif %}
 
 <div class="students">
@@ -32,3 +32,5 @@
         Lily
     </div>
 </div>
+
+{% endblock %}

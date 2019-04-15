@@ -4,12 +4,3 @@ from django.views import generic
 
 
 # Create your views here.
-
-class ChildListView(generic.ListView):
-    model = Child;
-
-class ActivityListView(generic.ListView):
-    model = Activity;
-
-def eat(request):
-    
