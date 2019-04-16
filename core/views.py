@@ -31,3 +31,9 @@ def index(request):
         'children': children
     }
     return render(request, 'index.html', context=context)
+
+def food(request):
+    return render(request, 'food.html')
+
+def diaper(request):
+    return render(request, 'diaper.html')
