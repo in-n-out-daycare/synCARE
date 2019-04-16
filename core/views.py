@@ -24,4 +24,10 @@ class ActivityListView(generic.ListView):
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+
+    children = Child.objects.all()
+
+    context = {
+        'children': children
+    }
+    return render(request, 'index.html', context=context)

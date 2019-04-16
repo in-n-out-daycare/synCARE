@@ -21,6 +21,7 @@
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
 }
   
 .student:hover {
