@@ -1,14 +1,14 @@
 
 .students {
-    display: flex;
+    
     border-style:dotted;
     border-radius: 7px;
-    flex-wrap: wrap;
+    
     justify-content: space-evenly;
 }
   
 .student {
-    width: 15%;
+    
     height: 80px;
     border-style: groove;
     border-color: red;
@@ -28,4 +28,15 @@
     border: solid;
     background-color: lightgreen;
     color:white;
+}
+
+@media screen and (min-width: 768px) {
+    .students {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .student {
+        width: 15%;
+    }
 }
