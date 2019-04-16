@@ -26,7 +26,7 @@ SECRET_KEY = '=$_+9*kl2326vey2j=nptypd^e0%5upn8io@m%7!266%u=$ucy'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '127.0.0.1:8000',
+    '127.0.0.1',
     'mighty-ravine-68326.herokuapp.com',
     'localhost',
     ]
