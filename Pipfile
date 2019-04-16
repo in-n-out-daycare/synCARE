@@ -12,6 +12,7 @@ psycopg2 = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-allauth = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
