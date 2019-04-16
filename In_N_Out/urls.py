@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
+    path('activities/<int:pk>', views.ActivityListView.as_view(), name='activities'),
     # allauth registration
     path('accounts/', include('allauth.urls')),
 ]
