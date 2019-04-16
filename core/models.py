@@ -67,4 +67,4 @@ class Activity(models.Model):
     end_time = models.DateTimeField('End time', default=False)
 
     def __str__(self):
-        return activity_type
+        return self.activity_type
