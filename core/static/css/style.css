@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .wrapper {
     
@@ -17,7 +21,7 @@
     padding: 25px;
     padding-top: 75px;
     text-align: center;
-    transition: all .3s ease;
+    
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
@@ -28,6 +32,26 @@
     border: solid;
     background-color: lightgreen;
     color:white;
+    transition: all .3s ease;
+}
+
+.header {
+    border-style: ridge;
+    border-color: black;
+    border-radius: 30px;
+    margin: 15px;
+
+}
+
+.title_bar {
+    
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.title {
+    width: 50%;
+    text-align: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -38,5 +62,9 @@
 
     .box {
         width: 15%;
+    }
+
+    .title_bar {
+        display: flex;
     }
 }
