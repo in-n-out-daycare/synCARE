@@ -30,6 +30,24 @@
     color:white;
 }
 
+.header {
+    border-style: ridge;
+    border-color: black;
+    border-radius: 30px;
+    margin: 15px;
+
+}
+
+.title_bar {
+    
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.title {
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     .wrapper {
         display: flex;
@@ -38,5 +56,9 @@
 
     .box {
         width: 15%;
+    }
+
+    .title_bar {
+        display: flex;
     }
 }
