@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 .wrapper {
     
@@ -17,7 +21,7 @@
     padding: 25px;
     padding-top: 75px;
     text-align: center;
-    transition: all .3s ease;
+    
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
@@ -28,6 +32,7 @@
     border: solid;
     background-color: lightgreen;
     color:white;
+    transition: all .3s ease;
 }
 
 .header {
@@ -45,6 +50,7 @@
 }
 
 .title {
+    width: 50%;
     text-align: center;
 }
 
