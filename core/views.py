@@ -4,15 +4,15 @@ from django.views import generic
 
 
 # Create your views here.
-def index(request):
+# def index(request):
     
-    all_children = Child.objects.all()
+#     all_children = Child.objects.all()
 
-    context = {
-        'all_children': all_children
-    }
+#     context = {
+#         'all_children': all_children
+#     }
 
-    return render(request, 'index.html', context=context)
+#     return render(request, 'index.html', context=context)
 
 # class-based view, if wanting to try
 # class Index(generic.ListView):
@@ -22,3 +22,6 @@ def index(request):
 class ActivityListView(generic.ListView):
     model = Activity
 
+# Create your views here.
+def index(request):
+    return render(request, 'index.html')
