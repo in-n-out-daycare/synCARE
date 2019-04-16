@@ -1,14 +1,14 @@
 
-.students {
-    display: flex;
+.wrapper {
+    
     border-style:dotted;
     border-radius: 7px;
-    flex-wrap: wrap;
+    
     justify-content: space-evenly;
 }
   
-.student {
-    width: 15%;
+.box {
+    
     height: 80px;
     border-style: groove;
     border-color: red;
@@ -21,10 +21,22 @@
     font-size: 22px;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
 }
   
-.student:hover {
+.box:hover {
     border: solid;
     background-color: lightgreen;
     color:white;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .box {
+        width: 15%;
+    }
 }

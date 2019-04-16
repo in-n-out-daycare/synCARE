@@ -4,10 +4,10 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <div class="students">
-        {% for student in students %} 
+    <div class="wrapper">
+        {% for child in children %} 
 
-        <div class="student"><a href="{% url 'activities' %} ">{{ student.name }}</a></div>
+        <div class="box"><a href="{% url 'activity_list' %}">{{ child.full_name }}</a></div>
         
         {% endfor %}
     </div>
@@ -15,22 +15,6 @@
         <div class="welcome"><h4><a href="{% url 'account_login' %}">Login</a>
 {% endif %}
 
-<div class="students">
-    <div class="student" onclick="location.href='http://www.si.com';">
-        Eliza
-    </div><div class="student">
-        Conley
-    </div><div class="student">
-        Drew
-    </div><div class="student">
-        Jack
-    </div><div class="student">
-        Henry
-    </div><div class="student">
-        Wesley
-    </div><div class="student">
-        Lily
-    </div>
-</div>
+
 
 {% endblock %}
