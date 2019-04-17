@@ -22,6 +22,10 @@ class Guardian(models.Model):
     
 
 class Child(models.Model):
+
+    class Meta:
+        verbose_name_plural = "children"
+
     full_name = models.CharField(max_length=254)
     age = models.CharField(max_length=2, null=False)
     child_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -44,6 +48,9 @@ class Visit(models.Model):
 
 
 class Activity(models.Model):
+
+    class Meta:
+        verbose_name_plural = "activities"
     
     FOOD = 'FD'
     NURSE = 'NS'
