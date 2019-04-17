@@ -4,6 +4,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+
     <div class="wrapper">
         {% for child in children %} 
 
@@ -11,6 +12,7 @@
         
         {% endfor %}
     </div>
+
 {% else %}
         <div class="welcome"><h4><a href="{% url 'account_login' %}">
 {% endif %}
