@@ -17,8 +17,7 @@ class Guardian(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.user.name
-    
+        return self.user.username   
 
 class Child(models.Model):
     full_name = models.CharField(max_length=254)

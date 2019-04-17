@@ -27,7 +27,7 @@ def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
     is_caregiver = request.user.groups.filter(name='caregiver').exists()
-    is_guardian = request.user.groups.filter(name='guardian').exists()added 
+    is_guardian = request.user.groups.filter(name='guardian').exists()
     children = ()
 
     if is_administrator:
