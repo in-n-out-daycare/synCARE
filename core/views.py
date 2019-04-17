@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Child, Activity
+from .models import Child, Activity, Guardian, Classroom
 from django.views import generic
 
 
@@ -25,10 +25,23 @@ class ActivityListView(generic.ListView):
 # Create your views here.
 def index(request):
 
-    children = Child.objects.all()
+    is_administrator = request.user.groups.filter(name='administrator').exists()
+    is_caregiver = request.user.groups.filter(name='caregiver').exists()
+    is_guardian = request.user.groups.filter(name='guardian').exists()
+    children = ()
+
+    if is_administrator:
+        children = Child.objects.all()
+
+    if is_caregiver:
+        children = Child.objects.filter(classroom__caregiver=request.user)
+
+    if is_guardian:
+        children = Guardian.objects.get(user=request.user).children.all
 
     context = {
-        'children': children
+        'children': children,
+        'isguardian': is_guardian,
     }
     return render(request, 'index.html', context=context)
 
