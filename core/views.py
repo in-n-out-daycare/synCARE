@@ -27,7 +27,7 @@ def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
     is_caregiver = request.user.groups.filter(name='caregiver').exists()
-    is_guardian = request.user.groups.filter(name='guardian').exists()
+    is_guardian = request.user.groups.filter(name='guardian').exists()added 
     children = ()
 
     if is_administrator:
@@ -42,6 +42,8 @@ def index(request):
     context = {
         'children': children,
         'isguardian': is_guardian,
+        'iscaregiver': is_caregiver,
+        'isadministrator': is_administrator,
     }
     return render(request, 'index.html', context=context)
 
