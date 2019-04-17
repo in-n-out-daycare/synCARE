@@ -20,12 +20,16 @@ class Guardian(models.Model):
         return self.user.username   
 
 class Child(models.Model):
+
+    class Meta:
+        verbose_name_plural = "children"
+
     full_name = models.CharField(max_length=254)
     age = models.CharField(max_length=2, null=False)
     child_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     classroom = models.ForeignKey(to=Classroom, related_name="children", on_delete=models.CASCADE)
     guardians = models.ManyToManyField(to=Guardian, related_name="children")
-    child_pic = models.ImageField(null=True)
+    child_pic = models.ImageField(blank=True, null=True)
     allergy = models.TextField(max_length=2000, null=True)
 
     def __str__(self):
@@ -42,6 +46,9 @@ class Visit(models.Model):
 
 
 class Activity(models.Model):
+
+    class Meta:
+        verbose_name_plural = "activities"
     
     FOOD = 'FD'
     NURSE = 'NS'
