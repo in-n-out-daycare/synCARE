@@ -13,13 +13,11 @@ class Classroom(models.Model):
 
 
 class Guardian(models.Model):
-    name = models.CharField(max_length=50, help_text="Last name, First name")
     phone_number = models.CharField(max_length=12, null=False)
-    email = models.EmailField(max_length=254, null=False)
-
-    def __str__(self):
-        return self.name
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     
+    def __str__(self):
+        return self.user.username   
 
 class Child(models.Model):
     full_name = models.CharField(max_length=254)
