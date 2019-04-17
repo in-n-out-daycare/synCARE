@@ -31,7 +31,7 @@ class Child(models.Model):
     child_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     classroom = models.ForeignKey(to=Classroom, related_name="children", on_delete=models.CASCADE)
     guardians = models.ManyToManyField(to=Guardian, related_name="children")
-    child_pic = models.ImageField(null=True)
+    child_pic = models.ImageField(blank=True, null=True)
     allergy = models.TextField(max_length=2000, null=True)
 
     def __str__(self):

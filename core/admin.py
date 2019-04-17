@@ -6,15 +6,15 @@ from core.models import Classroom, Guardian, Child, Visit, Activity
 
 @admin.register(Classroom)
 class ClassroomAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('classroom', 'caregiver')
 
 @admin.register(Guardian)
 class GuardianAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Child)
-class StudentAdmin(admin.ModelAdmin):
-    pass
+class ChildAdmin(admin.ModelAdmin):
+    list_display = ('full_name', 'classroom')
 
 @admin.register(Visit)
 class VisitAdmin(admin.ModelAdmin):
