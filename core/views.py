@@ -46,6 +46,7 @@ def index(request):
 
     if is_guardian:
         children = Guardian.objects.get(user=request.user).children.all
+        return render(request, 'visit.html')
 
     context = {
         'children': children,

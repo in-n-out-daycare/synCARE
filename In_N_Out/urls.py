@@ -27,6 +27,7 @@ urlpatterns = [
     path('activity_list/<int:visit_id>/', views.ActivityListView.as_view(), name='activity_list'),
     path('activity_list/food', views.food, name='food'),
     path('activity_list/diaper', views.diaper, name='diaper'),
+    path('visit/', views.ActivityListView.as_view(), name='visit'),
     # allauth registration
     path('accounts/', include('allauth.urls')),
 ]
