@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Child, Activity, Guardian, Classroom
+from .models import Child, Activity, Guardian, Classroom, Visit
 from django.views import generic
+from django.db.models import Prefetch
 
 
 # Create your views here.
@@ -34,7 +35,14 @@ def index(request):
         children = Child.objects.all()
 
     if is_caregiver:
-        children = Child.objects.filter(classroom__caregiver=request.user)
+        
+        children = Child.objects.filter(classroom__caregiver=request.user).prefetch_related(
+                Prefetch(
+                    "visits",
+                    queryset=Visit.objects.filter(check_out__isnull=True),
+                    to_attr="visit"
+                )
+            )
 
     if is_guardian:
         children = Guardian.objects.get(user=request.user).children.all
@@ -52,3 +60,6 @@ def food(request):
 
 def diaper(request):
     return render(request, 'diaper.html')
+
+def nap(request):
+    return render(request,'index.html', context=context)

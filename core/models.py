@@ -38,11 +38,12 @@ class Child(models.Model):
 
 class Visit(models.Model):
     check_in = models.DateTimeField('Check in', auto_now_add=True)
-    check_out = models.DateTimeField('Check out', default=False)
+    check_out = models.DateTimeField('Check out', blank=True, null=True)
     child = models.ForeignKey(to=Child,related_name="visits", on_delete=models.CASCADE)
+    comment = models.TextField(max_length=2000, blank=True, null=True)
 
     def __str__(self):
-        return self.check_in
+        return str(self.check_in)
 
 
 class Activity(models.Model):
@@ -50,22 +51,19 @@ class Activity(models.Model):
     class Meta:
         verbose_name_plural = "activities"
     
-    FOOD = 'FD'
-    NURSE = 'NS'
-    BOTTLE = 'BT'
+    INPUT = 'IN'
+    OUTPUT = 'OUT'
     NAP = 'NP'
-    DIAPER1 = 'DP1'
-    DIAPER2 = 'DP2'
     
     ACTIVITY_TYPES = (
-        (FOOD, 'Food'),
-        (NURSE,'Nurse'),
-        (BOTTLE, 'Bottle'),
+        (INPUT, 'Input'),
+        (OUTPUT,'Output'),
         (NAP, 'Nap'),
-        (DIAPER1, 'Diaper1'),
-        (DIAPER2, 'Diaper2'),
     )
+
     activity_type = models.CharField(max_length=2, choices=ACTIVITY_TYPES, null=False)
+    subtype = models.CharField(max_length=50, null=True)
+    subtype_option = models.CharField(max_length=50, null=True)
     visit = models.ForeignKey(to=Visit, related_name="activities", on_delete=models.CASCADE)
     child = models.ForeignKey(to=Child, related_name="activities", on_delete=models.CASCADE)
     start_time = models.DateTimeField('Start time', auto_now_add=True)

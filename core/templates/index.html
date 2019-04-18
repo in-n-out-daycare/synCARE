@@ -8,8 +8,17 @@
     <div class="wrapper">
         {% for child in children %} 
 
-        <div class="box"><a href="{% url 'activity_list' %}">{{ child.full_name }}</a></div>
-        
+            <div class="box">
+            {% if child.visit|length == 1 %}
+                {{ child.visit.0.id }}<a href="{% url 'activity_list' visit_id=child.visit.0.id %}">
+            {% endif %}
+            
+            {{ child.full_name }}</a></div>
+            {% if child.visit|length == 1 %}
+                Check out
+            {% else %}
+                Check in
+            {% endif %}    
         {% endfor %}
     </div>
 
