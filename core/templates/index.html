@@ -10,16 +10,19 @@
 
             <div class="box">
             {% if child.visit|length == 1 %}
-                {{ child.visit.0.id }}<a href="{% url 'activity_list' visit_id=child.visit.0.id %}">
+                <a href="{% url 'activity_list' visit_id=child.visit.0.id %}">
             {% endif %}
             
             {{ child.full_name }}</a></div>
             {% if child.visit|length == 1 %}
-                Check out
+                <div class="check-out" ><a href="{% url 'check_out' visit_id=child.visit.0.id %}">Check out</a></div>
             {% else %}
-                Check in
+            
+                <div class="check-in" ><a href="{% url 'check_in' child_id=child.child_id %}">Check in</a></div>
             {% endif %}    
-        {% endfor %}
+    
+    {% endfor %}
+    
     </div>
 
 {% else %}

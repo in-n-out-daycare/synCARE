@@ -26,3 +26,9 @@ class NewActivityForm(forms.Form):
             task_props.update(kwargs)
             return Task.objects.create(**task_props)
         return None
+
+class VisitForm(forms.Form):
+    
+    class Meta:
+        model = Visit
+        fields = ['check_in','check_out', 'child', 'comment']

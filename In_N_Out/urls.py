@@ -19,6 +19,7 @@ from django.views.generic import RedirectView
 from core import views
 from django.conf.urls.static import static
 from django.conf import settings
+import uuid
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,8 @@ urlpatterns = [
     path('visit/', views.ActivityListView.as_view(), name='visit'),
     # allauth registration
     path('accounts/', include('allauth.urls')),
+    path('visit/check_out/<int:visit_id>/', views.check_out, name='check_out'),
+    path('visit/new/<uuid:child_id>/', views.check_in, name='check_in'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
