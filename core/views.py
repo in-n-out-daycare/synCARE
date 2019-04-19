@@ -70,9 +70,6 @@ def food(request):
 def diaper(request):
     return render(request, 'diaper.html')
 
-def nap(request):
-    return render(request,'index.html', context=context)
-
 def visit(request):
     return
 
@@ -91,22 +88,18 @@ def check_in(request, child_id):
     return redirect('index')
 
 def nap_out(request, visit_id):
-    nap = Activity.objects.filter(
-        id=visit_id,
-        activity_type='NAP'
-    )[0]
+    nap = Activity.objects.filter(activity_type='NP', visit_id=visit_id,)[0]
     nap.end_time = datetime.datetime.now()
     nap.save()
-    return redirect('action_list', id=visit_id)
+    return redirect('index')
 
 def nap_in(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     nap = Activity(
         child=visit.child,
-        activity_type='NAP'
+        activity_type='NP',
+        visit_id=visit.id # got a null constraint error so am setting the visit_id when I save the nap
     )
     nap.save()
-
     
-    return redirect('action_list', id=visit_id)
-
+    return redirect('index')
