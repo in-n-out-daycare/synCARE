@@ -83,3 +83,17 @@ def check_in(request, child_id):
     visit.save()
     return redirect('index')
 
+def nap_out(request, visit_id):
+    nap = Activity.objects.get(id=visit_id)
+    nap.end_time = datetime.datetime.now()
+    nap.save()
+    return redirect('activity_list')
+
+def nap_in(request, child_id):
+    child = Child.objects.get(child_id=child_id)
+    nap = Activity(
+        child=child
+    )
+    nap.save()
+    return redirect('activity_list')
+

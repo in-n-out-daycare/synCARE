@@ -33,6 +33,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('visit/check_out/<int:visit_id>/', views.check_out, name='check_out'),
     path('visit/new/<uuid:child_id>/', views.check_in, name='check_in'),
+    path('visit/nap_start/<uuid:child_id>/', views.nap_in, name='nap_in'),
+    path('visit/nap_end/<int:visit_id>/', views.nap_out, name='nap_out'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
