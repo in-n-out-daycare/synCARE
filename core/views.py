@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Child, Activity, Guardian, Classroom, Visit
 from django.views import generic
 from django.db.models import Prefetch
+import datetime
 
 
 # Create your views here.
@@ -64,3 +65,21 @@ def diaper(request):
 
 def nap(request):
     return render(request,'index.html', context=context)
+
+def visit(request):
+    return
+
+def check_out(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    visit.check_out = datetime.datetime.now()
+    visit.save()
+    return redirect('index')
+
+def check_in(request, child_id):
+    child = Child.objects.get(child_id=child_id)
+    visit = Visit(
+        child=child
+    )
+    visit.save()
+    return redirect('index')
+
