@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="wrapper">
+    
+    <div class="box"><a href="{% url 'food' %}">In</a></div>
+    
+    {% comment %} {% if activity.start_time == null %} {% endcomment %}
+    {% comment %} {% for c in child %} {% endcomment %}
+    <div class="nap-in" ><a href="{% url 'nap_in' visit_id=visit_id %}">Nap in</a></div>
+     
+    {% comment %} {% else %} {% endcomment %}
+    <div class="nap-out" ><a href="{% url 'nap_out' visit_id=visit_id %}">Nap out</a></div>
+    {% comment %} {% endfor %}      {% endcomment %}
+    {% comment %} {% endif %} {% endcomment %}
+      
+    <div class="box"><a href="{% url 'diaper' %}">Out</a></div>
+    
+</div>
+
+{% endblock %}

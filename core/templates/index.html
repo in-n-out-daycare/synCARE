@@ -10,7 +10,7 @@
 
             <div class="box">
             {% if child.visit|length == 1 %}
-                <a href="{% url 'activity_list' visit_id=child.visit.0.id %}">
+                <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
             {% endif %}
             
             {{ child.full_name }}</a>

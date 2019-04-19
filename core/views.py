@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from .models import Child, Activity, Guardian, Classroom, Visit
+import datetime
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.db.models import Prefetch
-import datetime
+
+from .models import Child, Activity, Guardian, Classroom, Visit
 
 
 # Create your views here.
@@ -24,6 +26,8 @@ import datetime
 class ActivityListView(generic.ListView):
     model = Activity
 
+
+
 # Create your views here.
 def index(request):
 
@@ -40,7 +44,7 @@ def index(request):
         children = Child.objects.filter(classroom__caregiver=request.user).prefetch_related(
                 Prefetch(
                     "visits",
-                    queryset=Visit.objects.filter(check_out__isnull=True),
+                    queryset=Visit.objects.filter(check_out__isnull=True, check_in__date__lte=datetime.date.today()),
                     to_attr="visit"
                 )
             )
@@ -56,6 +60,9 @@ def index(request):
         'isadministrator': is_administrator,
     }
     return render(request, 'index.html', context=context)
+
+def action_list(request, visit_id):
+    return render(request, 'action_list.html', {'visit_id': visit_id})
 
 def food(request):
     return render(request, 'food.html')
@@ -84,16 +91,22 @@ def check_in(request, child_id):
     return redirect('index')
 
 def nap_out(request, visit_id):
-    nap = Activity.objects.get(id=visit_id)
+    nap = Activity.objects.filter(
+        id=visit_id,
+        activity_type='NAP'
+    )[0]
     nap.end_time = datetime.datetime.now()
     nap.save()
-    return redirect('activity_list')
+    return redirect('action_list', id=visit_id)
 
-def nap_in(request, child_id):
-    child = Child.objects.get(child_id=child_id)
+def nap_in(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
     nap = Activity(
-        child=child
+        child=visit.child,
+        activity_type='NAP'
     )
     nap.save()
-    return redirect('activity_list')
+
+    
+    return redirect('action_list', id=visit_id)
 
