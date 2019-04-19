@@ -67,7 +67,7 @@ class Activity(models.Model):
     visit = models.ForeignKey(to=Visit, related_name="activities", on_delete=models.CASCADE)
     child = models.ForeignKey(to=Child, related_name="activities", on_delete=models.CASCADE)
     start_time = models.DateTimeField('Start time', auto_now_add=True)
-    end_time = models.DateTimeField('End time', default=True, blank=True, null=True)
+    end_time = models.DateTimeField('End time', blank=True, null=True)
 
     def __str__(self):
         return self.activity_type
