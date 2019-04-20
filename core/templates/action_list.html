@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="wrapper">
-    
+    <p>{{child}}{{visit}}{{activity}}</p>
     <div class="box"><a href="{% url 'food' %}">In</a></div>
     
     {% comment %} {% if visit.activities.start_time == null %} {% endcomment %}

@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
     {% block meta %}{% endblock %}
     <title>{% block title %}In-N-Out{% endblock %}</title>
 </head>
 
-<header class="title_bar">
-    <div class="home"><h4><a href="{% url 'index' %}">HOME</a></h4></div>
-    <h1 class="title">In-N-Out</h1>
+<header class="title_bar tc flex-ns items-center f4 justify-around">
+    <div class="home center><h4><a href="{% url 'index' %}">HOME</a></h4></div>
+    <h1 class="title">Input//Output</h1>
     {% if user.is_authenticated %}
         <div class="username"><h4><a href="#">{{ user.get_username }}</a> | 
         <a href="{% url 'account_logout' %}">Logout</a></h4></div>

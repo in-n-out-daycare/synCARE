@@ -27,7 +27,6 @@ class ActivityListView(generic.ListView):
     model = Activity
 
 
-
 # Create your views here.
 def index(request):
 
@@ -62,7 +61,15 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def action_list(request, visit_id):
-    return render(request, 'action_list.html', {'visit_id': visit_id})
+    visit = Visit.objects.get(id=visit_id)
+    activity = visit.activities
+    context = {
+        'activity': activity,
+        'visit': visit,
+        'child': visit.child,
+        'visit_id': visit_id,
+    }
+    return render(request, 'action_list.html', context=context)
 
 def food(request):
     return render(request, 'food.html')
