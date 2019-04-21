@@ -30,12 +30,12 @@ a, a:visited, a:hover, a:active {
     border-style: groove;
     
     border-radius: 20px;
-    margin: 40px;
+    margin: 30px;
     padding: 25px;
     padding-top: 75px;
     text-align: center;
     background-color: orchid;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -74,7 +74,7 @@ a, a:visited, a:hover, a:active {
     }
 
     .box {
-        width: 25%;
+        width: 20%;
     }
 
     .title_bar {
