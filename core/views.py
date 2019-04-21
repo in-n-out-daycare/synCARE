@@ -1,30 +1,16 @@
-from django.shortcuts import render, redirect
-from .models import Child, Activity, Guardian, Classroom, Visit
-from django.views import generic
-from django.db.models import Prefetch
 import datetime
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic
+from django.db.models import Prefetch
 
-# Create your views here.
-# def index(request):
-    
-#     all_children = Child.objects.all()
-
-#     context = {
-#         'all_children': all_children
-#     }
-
-#     return render(request, 'index.html', context=context)
-
-# class-based view, if wanting to try
-# class Index(generic.ListView):
-#     model = Child
+from .models import Child, Activity, Guardian, Classroom, Visit
 
 
 class ActivityListView(generic.ListView):
     model = Activity
 
-# Create your views here.
+
 def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
@@ -40,7 +26,7 @@ def index(request):
         children = Child.objects.filter(classroom__caregiver=request.user).prefetch_related(
                 Prefetch(
                     "visits",
-                    queryset=Visit.objects.filter(check_out__isnull=True),
+                    queryset=Visit.objects.filter(check_out__isnull=True, check_in__date__lte=datetime.date.today()),
                     to_attr="visit"
                 )
             )
@@ -57,14 +43,48 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def action_list(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    activity = visit.activities
+    nap = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP, end_time__isnull=True)
+    context = {
+        'activity': activity,
+        'visit': visit,
+        'child': visit.child,
+        'visit_id': visit_id,
+        'open_nap':nap,
+    }
+    return render(request, 'action_list.html', context=context)
+
 def food(request):
     return render(request, 'food.html')
 
-def diaper(request):
-    return render(request, 'diaper.html')
+def diaper(request, visit_id):
+    return render(request, 'diaper.html', {'visit_id': visit_id})
 
-def nap(request):
-    return render(request,'index.html', context=context)
+def diaper_1(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    diaper = Activity(
+        activity_type=Activity.OUTPUT,
+        subtype='1',
+        visit=visit,
+        child=visit.child
+    )
+    diaper.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
+def diaper_2(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    diaper = Activity(
+        activity_type=Activity.OUTPUT,
+        subtype='2',
+        visit=visit,
+        child=visit.child,
+    )
+    diaper.save()
+
+    return redirect('action_list', visit_id=visit_id)
 
 def visit(request):
     return
@@ -83,3 +103,19 @@ def check_in(request, child_id):
     visit.save()
     return redirect('index')
 
+def nap_out(request, activity_id):
+    nap = Activity.objects.get(id=activity_id)
+    nap.end_time = datetime.datetime.now()
+    nap.save()
+    return redirect('action_list', visit_id=nap.visit.id)
+
+def nap_in(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    nap = Activity(
+        activity_type=Activity.NAP,
+        visit=visit,
+        child=visit.child,
+    )
+    nap.save()
+    
+    return redirect('action_list', visit_id=visit_id)

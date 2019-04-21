@@ -68,3 +68,7 @@
         display: flex;
     }
 }
+
+body{
+    padding: 1rem;
+}
