@@ -52,7 +52,7 @@ class Activity(models.Model):
         verbose_name_plural = "activities"
     
     INPUT = 'IN'
-    OUTPUT = 'OUT'
+    OUTPUT = 'OT'
     NAP = 'NP'
     
     ACTIVITY_TYPES = (
@@ -61,13 +61,13 @@ class Activity(models.Model):
         (NAP, 'Nap'),
     )
 
-    activity_type = models.CharField(max_length=2, choices=ACTIVITY_TYPES, null=False)
-    subtype = models.CharField(max_length=50, null=True)
-    subtype_option = models.CharField(max_length=50, null=True)
+    activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES, null=False)
+    subtype = models.CharField(max_length=50, null=True, blank=True)
+    subtype_option = models.CharField(max_length=50, null=True, blank=True)
     visit = models.ForeignKey(to=Visit, related_name="activities", on_delete=models.CASCADE)
     child = models.ForeignKey(to=Child, related_name="activities", on_delete=models.CASCADE)
     start_time = models.DateTimeField('Start time', auto_now_add=True)
-    end_time = models.DateTimeField('End time', default=False)
+    end_time = models.DateTimeField('End time', blank=True, null=True)
 
     def __str__(self):
         return self.activity_type

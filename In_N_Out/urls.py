@@ -25,7 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
-    path('activity_list/<int:visit_id>/', views.ActivityListView.as_view(), name='activity_list'),
+    path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
     path('activity_list/food', views.food, name='food'),
     path('activity_list/diaper', views.diaper, name='diaper'),
     path('visit/', views.ActivityListView.as_view(), name='visit'),
@@ -33,6 +33,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('visit/check_out/<int:visit_id>/', views.check_out, name='check_out'),
     path('visit/new/<uuid:child_id>/', views.check_in, name='check_in'),
+    path('visit/nap_in/<int:visit_id>/', views.nap_in, name='nap_in'),
+    path('visit/nap_out/<int:activity_id>/', views.nap_out, name='nap_out'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
