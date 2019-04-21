@@ -30,12 +30,12 @@ a, a:visited, a:hover, a:active {
     border-style: groove;
     
     border-radius: 20px;
-    margin: 30px;
+    margin: 40px;
     padding: 25px;
     padding-top: 75px;
     text-align: center;
-    background-color: orchid;
-    font-size: 30px;
+    background-color: #f294fd;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
@@ -43,7 +43,7 @@ a, a:visited, a:hover, a:active {
   
 .box:hover {
     
-    background-color: plum;
+    background-color: orchid;
     color:white;
     transition: all .3s ease;
 }
