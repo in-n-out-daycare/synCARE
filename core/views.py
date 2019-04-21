@@ -7,27 +7,10 @@ from django.db.models import Prefetch
 from .models import Child, Activity, Guardian, Classroom, Visit
 
 
-# Create your views here.
-# def index(request):
-    
-#     all_children = Child.objects.all()
-
-#     context = {
-#         'all_children': all_children
-#     }
-
-#     return render(request, 'index.html', context=context)
-
-# class-based view, if wanting to try
-# class Index(generic.ListView):
-#     model = Child
-
-
 class ActivityListView(generic.ListView):
     model = Activity
 
 
-# Create your views here.
 def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
@@ -63,11 +46,13 @@ def index(request):
 def action_list(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
     activity = visit.activities
+    nap = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP, end_time__isnull=True)
     context = {
         'activity': activity,
         'visit': visit,
         'child': visit.child,
         'visit_id': visit_id,
+        'open_nap':nap,
     }
     return render(request, 'action_list.html', context=context)
 
@@ -94,19 +79,19 @@ def check_in(request, child_id):
     visit.save()
     return redirect('index')
 
-def nap_out(request, visit_id):
-    nap = Activity.objects.filter(activity_type='NP', visit_id=visit_id,)[0]
+def nap_out(request, activity_id):
+    nap = Activity.objects.get(id=activity_id)
     nap.end_time = datetime.datetime.now()
     nap.save()
-    return redirect('index')
+    return redirect('action_list', visit_id=nap.visit.id)
 
 def nap_in(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     nap = Activity(
+        activity_type=Activity.NAP,
+        visit=visit,
         child=visit.child,
-        activity_type='NP',
-        visit_id=visit.id # got a null constraint error so am setting the visit_id when I save the nap
     )
     nap.save()
     
-    return redirect('index')
+    return redirect('action_list', visit_id=visit_id)
