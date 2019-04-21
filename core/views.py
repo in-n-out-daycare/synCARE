@@ -56,11 +56,28 @@ def action_list(request, visit_id):
     }
     return render(request, 'action_list.html', context=context)
 
-def food(request):
-    return render(request, 'food.html')
+def in_list(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    context = {
+        'visit_id' : visit_id
+        }
+    return render(request, 'in_list.html', context=context)
+
+
+def bottle(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    bottle = Activity(
+        activity_type=Activity.INPUT,
+        subtype='bottle',
+        visit=visit,
+        child=visit.child,
+    )
+    bottle.save()
+   
+    return redirect('in_list', visit_id=visit_id)
 
 def diaper(request):
-    return render(request, 'diaper.html')
+    return 
 
 def visit(request):
     return

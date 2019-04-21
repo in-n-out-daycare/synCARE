@@ -26,8 +26,9 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
     path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
-    path('activity_list/food', views.food, name='food'),
-    path('activity_list/diaper', views.diaper, name='diaper'),
+    path('activity_list/in_list/bottle/<int:visit_id>/', views.bottle, name='bottle'),
+    path('activity_list/in_list/<int:visit_id>/',views.in_list, name='in_list' ),
+    path('activity_list/diaper/', views.diaper, name='diaper'),
     path('visit/', views.ActivityListView.as_view(), name='visit'),
     # allauth registration
     path('accounts/', include('allauth.urls')),
