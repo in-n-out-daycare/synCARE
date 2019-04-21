@@ -28,7 +28,9 @@ urlpatterns = [
     path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
     path('activity_list/in_list/bottle/<int:visit_id>/', views.bottle, name='bottle'),
     path('activity_list/in_list/<int:visit_id>/',views.in_list, name='in_list' ),
-    path('activity_list/diaper/', views.diaper, name='diaper'),
+    path('activity_list/diaper/<int:visit_id>/', views.diaper, name='diaper'),
+    path('activity_list/diaper/<int:visit_id>/diaper_1/', views.diaper_1, name='diaper_1'),
+    path('activity_list/diaper/<int:visit_id>/diaper_2/', views.diaper_2, name='diaper_2'),
     path('visit/', views.ActivityListView.as_view(), name='visit'),
     # allauth registration
     path('accounts/', include('allauth.urls')),

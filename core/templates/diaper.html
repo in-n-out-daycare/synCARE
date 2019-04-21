@@ -1,1 +1,14 @@
 {% extends "base.html" %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="box">
+    <a href="{% url 'diaper_1' visit_id=visit_id %}">1</a>
+    </div>
+    <div class="box">
+    <a href="{% url 'diaper_2' visit_id=visit_id %}">2</a>
+    </div>
+</div>
+
+{% endblock %}
