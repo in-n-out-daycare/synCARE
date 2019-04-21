@@ -67,7 +67,7 @@ def in_list(request, visit_id):
 @require_http_methods(['POST'])
 def bottle(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
-    option = request.POST['choice']
+    option = request.POST['bottle_choice']
     bottle = Activity(
         activity_type=Activity.INPUT,
         subtype='bottle',
