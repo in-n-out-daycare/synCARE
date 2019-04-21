@@ -11,7 +11,7 @@
         <div class="nap-in" ><a href="{% url 'nap_in' visit_id=visit_id %}">Nap in</a></div>
     {% endif %}
 
-    <div class="box"><a href="{% url 'diaper' %}">Out</a></div>
+    <div class="box"><a href="{% url 'diaper' visit_id=visit_id %}">Out</a></div>
     
 </div>
 
