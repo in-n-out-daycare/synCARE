@@ -56,6 +56,20 @@ def action_list(request, visit_id):
     }
     return render(request, 'action_list.html', context=context)
 
+def action_summary(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    activities = Activity.objects.filter(visit_id=visit_id)
+    child = visit.child
+
+    context = {
+        'activities': activities,
+        'visit': visit,
+        'child': child,
+        'visit_id': visit_id,
+    }
+
+    return render(request, 'action_summary.html', context=context)
+
 def food(request):
     return render(request, 'food.html')
 

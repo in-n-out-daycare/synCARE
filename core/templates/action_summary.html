@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Daily Summary - {{child}}</h1>
+
+<p>Nap Time:</p>
+{% for activity in activities %}
+    {% if activity.type == NP %}
+        <p>Nap Start: {{ activity.start_time }}</p>
+        <p>Nap End: {{activity.end_time }}</p>
+    {% endif %}
+    {% comment %} {% if activity.type == OT %}
+        <p>Diaper change time: {{activity.start_time }}</p>
+        <p>Diaper contents: {{ activity.subtype }}</p>
+    {% endif %} {% endcomment %}
+{% endfor %}
+
+{% endblock %}

@@ -26,6 +26,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
     path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
+    path('activity_list/<int:visit_id>/summary/', views.action_summary, name='action_summary'),
     path('activity_list/food', views.food, name='food'),
     path('activity_list/diaper/<int:visit_id>/', views.diaper, name='diaper'),
     path('activity_list/diaper/<int:visit_id>/diaper_1/', views.diaper_1, name='diaper_1'),
