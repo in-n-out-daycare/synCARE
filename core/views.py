@@ -58,14 +58,16 @@ def action_list(request, visit_id):
 
 def action_summary(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
-    activities = Activity.objects.filter(visit_id=visit_id)
+    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
+    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     child = visit.child
 
     context = {
-        'activities': activities,
+        'naps': naps,
         'visit': visit,
         'child': child,
         'visit_id': visit_id,
+        'outputs': outputs,
     }
 
     return render(request, 'action_summary.html', context=context)
