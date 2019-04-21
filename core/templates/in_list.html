@@ -4,14 +4,14 @@
 
 <div class="wrapper">
    
-    <div class="box" ><a href="{% url 'bottle' visit_id=visit_id %}">Bottle</a>
-    <form method="POST" action="{% url 'bottle' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">
-        <select id = "choices">
-            <option value = "All">drank all</option>
-            <option value = "1oz left">left 1oz</option>
-            <option value = "2oz left">left 2oz</option>
-            <option value = "3oz left">left 3oz</option>
-        </select>
+    <div class="box" ><a href="#" onclick="document.getElementById('bottle_form').submit();"> Bottle </a>
+    <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
+        <div class="choices" >
+        <input type="radio" name="choice" value="All"> drank all<br>
+        <input type="radio" name="choice" value="1oz"> 1 oz left<br>
+        <input type="radio" name="choice" value="2oz"> 2 oz left<br>
+        <input type="radio" name="choice" value="3oz"> 3 oz left
+        </div>
     </form>
     </div>
     <div class="box">Nurse</div>

@@ -31,7 +31,7 @@
 .box:hover {
     border: solid;
     background-color: lightgreen;
-    color:white;
+    color:rgb(241, 83, 10);
     transition: all .3s ease;
 }
 
