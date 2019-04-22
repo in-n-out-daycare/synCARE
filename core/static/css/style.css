@@ -1,37 +1,63 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Short Stack', cursive;
 }
 
+body {
+    background-image: url("https://previews.123rf.com/images/genika/genika1411/genika141100105/33984233-children-seamless-texture-on-a-yellow-background.jpg");
+
+}
+
+a, u {
+    text-decoration: none;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+}
 
 .wrapper {
     
-    border-style:dotted;
+    
     border-radius: 7px;
     
     justify-content: space-evenly;
+}
+
+button {
+    background-color: #fdf894;
+    border: none;
+    
+    padding: 15px 12px;
+    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
 }
   
 .box {
     
     height: 80px;
+    color: white;
     border-style: groove;
-    border-color: red;
-    border-radius: 20px;
-    margin: 25px;
-    padding: 25px;
-    padding-top: 75px;
-    text-align: center;
     
-    font-size: 22px;
+    border-radius: 20px;
+    margin: 40px;
+    padding: 25px;
+    padding-top: 45px;
+    text-align: center;
+    background-color: #f294fd;
+    font-size: 35px;
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
 }
   
 .box:hover {
-    border: solid;
-    background-color: lightgreen;
-    color:rgb(241, 83, 10);
+    
+    background-color: orchid;
+    color:white;
     transition: all .3s ease;
 }
 
@@ -44,14 +70,31 @@
 }
 
 .title_bar {
-    
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
     padding: 15px;
 }
 
 .title {
     width: 50%;
     text-align: center;
+    margin-top: 2px;
+    padding-top: 2px;
+}
+
+.home {
+    font-size: 35px;
+    margin: 25px;
+}
+
+.login {
+    font-size: 35px;
+    margin: 25px;
+}
+
+.username {
+    font-size: 30px;
+    margin: 25px;
 }
 
 @media screen and (min-width: 768px) {
@@ -61,7 +104,7 @@
     }
 
     .box {
-        width: 15%;
+        width: 20%;
     }
 
     .title_bar {

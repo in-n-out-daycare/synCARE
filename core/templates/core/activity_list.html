@@ -4,7 +4,7 @@
 
 <div class="wrapper">
     
-    <div class="box"><a href="{% url 'food' %}">In</a></div>
+    <div class="box"><a href="{% url 'in_list' %}">In</a></div>
     {% if activity.start_time == null %}
     <div class="nap-in" ><a href="{% url 'nap_in' child_id=child.child_id %}">Nap in</a></div>
         
