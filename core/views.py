@@ -3,6 +3,8 @@ import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.db.models import Prefetch
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 
 from .models import Child, Activity, Guardian, Classroom, Visit
 
@@ -78,7 +80,7 @@ def action_summary_email(request, visit_id):
     to = visit.child.guardian.user.email
     from_email = 'input_output@io.com'
 
-    message=get_template('action_summary.html').render(context)
+    message=get_template('action_summary.html').render()
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
     msg.send()
