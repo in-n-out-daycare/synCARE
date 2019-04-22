@@ -16,6 +16,9 @@
     <p>Diaper change time: {{output.start_time|date:"h:i a" }}</p>
     <p>Diaper contents: {{ output.subtype }}</p>
 {% endfor%}
+{% for input in inputs %}
+    
+{% endfor %}
 
 <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
 

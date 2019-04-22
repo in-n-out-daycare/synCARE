@@ -4,7 +4,7 @@
 
 body {
     background-image: url("https://previews.123rf.com/images/genika/genika1411/genika141100105/33984233-children-seamless-texture-on-a-yellow-background.jpg");
-
+    padding: 1rem;
 }
 
 a, u {
@@ -110,8 +110,4 @@ button {
     .title_bar {
         display: flex;
     }
-}
-
-body{
-    padding: 1rem;
 }
