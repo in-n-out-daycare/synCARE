@@ -63,6 +63,7 @@ def action_summary(request, visit_id):
     child = visit.child
 
     context = {
+        # 'date': visit.check_in.strftime('%m-%d-%Y'),
         'naps': naps,
         'visit': visit,
         'child': child,
@@ -71,6 +72,18 @@ def action_summary(request, visit_id):
     }
 
     return render(request, 'action_summary.html', context=context)
+
+def action_summary_email(request, visit_id):
+    subject="Input//Output Daily Summary"
+    to = visit.child.guardian.user.email
+    from_email = 'input_output@io.com'
+
+    message=get_template('action_summary.html').render(context)
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+    msg.send()
+
+    return render(request,'action_summary.html', {'visit_id': visit_id})
 
 def food(request):
     return render(request, 'food.html')

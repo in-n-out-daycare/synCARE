@@ -3,14 +3,14 @@
 {% block content %}
 
 <h1>Daily Summary - {{child}}</h1>
-
-<p>Nap Time:</p>
+<h3>{{ visit.check_in|date:"D d M Y" }}</h3>
 {% for nap in naps %}
-    <p>Nap Start: {{ nap.start_time }}</p>
-    <p>Nap End: {{ nap.end_time }}</p>
+    {{ time }}
+    <p>Nap Start: {{ nap.start_time|date:"h:i a" }}</p>
+    <p>Nap End: {{ nap.end_time|date:"h:i a" }}</p>
 {% endfor %}
 {% for output in outputs %}
-    <p>Diaper change time: {{output.start_time }}</p>
+    <p>Diaper change time: {{output.start_time|date:"h:i a" }}</p>
     <p>Diaper contents: {{ output.subtype }}</p>
 {% endfor%}
 
