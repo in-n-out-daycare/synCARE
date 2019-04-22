@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="/static/main.js"></script>
+
+<div class="wrapper">
+   
+    <div class="box" ><a href="#" onclick="submitBottleForm();"> Bottle </a>
+    <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
+        <div class="choices" >
+        <input type="radio" name="bottle_choice" value="All"> drank all<br>
+        <input type="radio" name="bottle_choice" value="1oz"> 1 oz left<br>
+        <input type="radio" name="bottle_choice" value="2oz"> 2 oz left<br>
+        <input type="radio" name="bottle_choice" value="3oz"> 3 oz left
+        </div>
+    </form>
+    </div>
+    <div class="box">Nurse</div>
+    <div class="box">Food</div>
+</div>
+
+{% endblock %}

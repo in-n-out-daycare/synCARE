@@ -3,7 +3,7 @@ import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.db.models import Prefetch
-
+from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 
 
@@ -56,8 +56,30 @@ def action_list(request, visit_id):
     }
     return render(request, 'action_list.html', context=context)
 
-def food(request, visit_id):
-    return render(request, 'food.html', {'visit_id': visit_id})
+
+def in_list(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    context = {
+        'visit_id' : visit_id
+        }
+    return render(request, 'in_list.html', context=context)
+
+
+@require_http_methods(['POST'])
+def bottle(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    option = request.POST['bottle_choice']
+    bottle = Activity(
+        activity_type=Activity.INPUT,
+        subtype='bottle',
+        subtype_option=option,
+        visit=visit,
+        child=visit.child,
+    )
+    bottle.save()
+   
+    return redirect('in_list', visit_id=visit_id)
+
 
 def diaper(request, visit_id):
     return render(request, 'diaper.html', {'visit_id': visit_id})
@@ -86,17 +108,7 @@ def diaper_2(request, visit_id):
 
     return redirect('action_list', visit_id=visit_id)
 
-def bottle(request, visit_id):
-    visit = get_object_or_404(Visit, id=visit_id)
-    bottle = Activity(
-        activity_type=Activity.INPUT,
-        subtype='B',
-        visit=visit,
-        child=visit.child
-    )
-    bottle.save()
 
-    return redirect('action_list', visit_id=visit_id)
 
 def nurse(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
