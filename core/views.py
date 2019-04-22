@@ -5,7 +5,7 @@ from django.views import generic
 from django.db.models import Prefetch
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
-
+from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 
 
@@ -102,8 +102,30 @@ def action_summary_email(request, visit_id):
 
     return redirect('index')
 
-def food(request):
-    return render(request, 'food.html')
+
+def in_list(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    context = {
+        'visit_id' : visit_id
+        }
+    return render(request, 'in_list.html', context=context)
+
+
+@require_http_methods(['POST'])
+def bottle(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    option = request.POST['bottle_choice']
+    bottle = Activity(
+        activity_type=Activity.INPUT,
+        subtype='bottle',
+        subtype_option=option,
+        visit=visit,
+        child=visit.child,
+    )
+    bottle.save()
+   
+    return redirect('in_list', visit_id=visit_id)
+
 
 def diaper(request, visit_id):
     return render(request, 'diaper.html', {'visit_id': visit_id})
@@ -120,6 +142,7 @@ def diaper_1(request, visit_id):
 
     return redirect('action_list', visit_id=visit_id)
 
+
 def diaper_2(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     diaper = Activity(
@@ -131,6 +154,33 @@ def diaper_2(request, visit_id):
     diaper.save()
 
     return redirect('action_list', visit_id=visit_id)
+
+
+def nurse(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    nurse = Activity(
+        activity_type=Activity.INPUT,
+        subtype='N',
+        visit=visit,
+        child=visit.child
+    )
+    nurse.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
+
+def lunch(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    lunch = Activity(
+        activity_type=Activity.INPUT,
+        subtype='L',
+        visit=visit,
+        child=visit.child
+    )
+    lunch.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
 
 def visit(request):
     return
