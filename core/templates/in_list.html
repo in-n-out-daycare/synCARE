@@ -15,8 +15,8 @@
         </div>
     </form>
     </div>
-    <div class="box">Nurse</div>
-    <div class="box">Food</div>
+    <div class="box"><a href="{% url 'nurse' visit_id=visit_id %}">Nurse</div>
+    <div class="box"><a href="{% url 'food' visit_id=visit_id %}">Food</div>
 </div>
 
 {% endblock %}
