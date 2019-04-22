@@ -15,8 +15,15 @@
 {% for input in inputs %}
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
 {% endfor %}
+{{ comment }}
 
-{{ comments }}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+    {{ form.as_p }}
+    </p>
+    <input type="submit" value="Comment">
+</form>
 
 <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
 

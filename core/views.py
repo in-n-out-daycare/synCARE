@@ -7,6 +7,7 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
+from .forms import CommentForm
 
 
 class ActivityListView(generic.ListView):
@@ -60,14 +61,27 @@ def action_list(request, visit_id):
 
 def action_summary(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
+    comment = visit.comment
     naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     child = visit.child
     guardians = child.guardians.all()
-    comments = visit.comment
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        if form.is_valid():
+            visit.comment = form.cleaned_data['comment']
+            visit.save()
+
+        return redirect('action_summary', visit_id=visit_id)
+
+    else:
+        form = CommentForm()
 
     context = {
+        'form': form,
         'guardians': guardians,
         'naps': naps,
         'visit': visit,
@@ -75,7 +89,7 @@ def action_summary(request, visit_id):
         'visit_id': visit_id,
         'outputs': outputs,
         'inputs': inputs,
-        'comments': comments,
+        'comment': comment,
     }
 
     return render(request, 'action_summary.html', context=context)
