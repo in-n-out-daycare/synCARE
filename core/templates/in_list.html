@@ -8,10 +8,14 @@
     <div class="box foodbox" ><button onclick="myFunction()" class="dropButton">Bottle</button>
     
     <div id="foodChoices" class="dropdownContent">
-    <a href="#">drank all</a><br>
-    <a href="#">1oz</a><br>
-    <a href="#">2oz</a><br>
-    <a href="#">3oz</a>
+    <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}">{% csrf_token %}
+        
+    <button name="bottle_choice" value="All">All</button>
+    <button name="bottle_choice" value="1oz">1oz</button>
+    <button name="bottle_choice" value="2oz">2oz</button>
+    <button name="bottle_choice" value="3oz">3oz</button>
+        
+    </form>
     </div>
     
     </div>
@@ -24,7 +28,7 @@
         </div>
     </form></div>
 
-    
+
     <div class="box"><a href="#" onclick="submitFoodForm();">Food</a>
     <form id="food_form" method="POST" action="{% url 'food' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
         <div class="choices" >
