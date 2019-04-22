@@ -122,6 +122,7 @@ def lunch(request, visit_id):
 
     return redirect('action_list', visit_id=visit_id)
 
+
 def visit(request):
     return
 
