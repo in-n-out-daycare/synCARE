@@ -65,6 +65,7 @@ def action_summary(request, visit_id):
     inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     child = visit.child
     guardians = child.guardians.all()
+    comments = visit.comment
 
     context = {
         'guardians': guardians,
@@ -74,6 +75,7 @@ def action_summary(request, visit_id):
         'visit_id': visit_id,
         'outputs': outputs,
         'inputs': inputs,
+        'comments': comments,
     }
 
     return render(request, 'action_summary.html', context=context)

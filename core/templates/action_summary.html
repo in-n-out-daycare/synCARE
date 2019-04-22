@@ -16,6 +16,8 @@
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
 {% endfor %}
 
+{{ comments }}
+
 <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
 
 {% endblock %}
