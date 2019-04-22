@@ -1,3 +1,4 @@
+
 function validateBottleForm() {
     const radios = document.getElementsByName("bottle_choice");
     let formValid = false;
