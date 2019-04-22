@@ -3,6 +3,8 @@ import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.db.models import Prefetch
+from django.template.loader import get_template
+from django.core.mail import EmailMessage
 from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 
@@ -56,6 +58,50 @@ def action_list(request, visit_id):
     }
     return render(request, 'action_list.html', context=context)
 
+def action_summary(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
+    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
+    child = visit.child
+    guardians = child.guardians.all()
+
+    context = {
+        'guardians': guardians,
+        'naps': naps,
+        'visit': visit,
+        'child': child,
+        'visit_id': visit_id,
+        'outputs': outputs,
+    }
+
+    return render(request, 'action_summary.html', context=context)
+
+def action_summary_email(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
+    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
+    child = visit.child
+    guardians = child.guardians.all()
+
+    subject="Input//Output Daily Summary"
+    to = [guardian.user.email for guardian in guardians]
+    from_email = 'input_output@io.com'
+
+    context = {
+    'naps': naps,
+    'visit': visit,
+    'child': child,
+    'visit_id': visit_id,
+    'outputs': outputs,
+    } 
+
+    message=get_template('action_summary_email.html').render(context)
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+    msg.send()
+
+    return redirect('index')
+
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
@@ -96,6 +142,7 @@ def diaper_1(request, visit_id):
 
     return redirect('action_list', visit_id=visit_id)
 
+
 def diaper_2(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     diaper = Activity(
@@ -109,7 +156,6 @@ def diaper_2(request, visit_id):
     return redirect('action_list', visit_id=visit_id)
 
 
-
 def nurse(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     nurse = Activity(
@@ -121,6 +167,7 @@ def nurse(request, visit_id):
     nurse.save()
 
     return redirect('action_list', visit_id=visit_id)
+
 
 def lunch(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)

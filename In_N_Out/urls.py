@@ -26,12 +26,12 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
     path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
+    path('activity_list/<int:visit_id>/summary/', views.action_summary, name='action_summary'),
+    path('activity_list/<int:visit_id>/summary/email/', views.action_summary_email, name='action_summary_email'),
     path('activity_list/in_list/<int:visit_id>/',views.in_list, name='in_list' ),
     path('activity_list/in_list/<int:visit_id>/bottle/', views.bottle, name='bottle'),
     # bottle moved from right after in_list to end of url to mirror nurse and food. potential trouble spot
     path('activity_list/in_list/<int:visit_id>/nurse/', views.nurse, name='nurse'),
-    
-
     path('activity_list/diaper/<int:visit_id>/', views.diaper, name='diaper'),
     path('activity_list/diaper/<int:visit_id>/diaper_1/', views.diaper_1, name='diaper_1'),
     path('activity_list/diaper/<int:visit_id>/diaper_2/', views.diaper_2, name='diaper_2'),

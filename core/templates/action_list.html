@@ -3,8 +3,7 @@
 {% block content %}
 
 <div class="wrapper">
-
-
+    <a href={% url 'action_summary' visit_id=visit_id %}>Daily Summary</a>
     <div class="box"><a href="{% url 'in_list' visit_id=visit_id %}">In</a></div>
 
     {% if open_nap|length >= 1 %}
