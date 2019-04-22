@@ -32,6 +32,7 @@ urlpatterns = [
     path('activity_list/in_list/<int:visit_id>/bottle/', views.bottle, name='bottle'),
     # bottle moved from right after in_list to end of url to mirror nurse and food. potential trouble spot
     path('activity_list/in_list/<int:visit_id>/nurse/', views.nurse, name='nurse'),
+    path('activity_list/in_list/<int:visit_id>/food/', views.food, name='food'),
     path('activity_list/diaper/<int:visit_id>/', views.diaper, name='diaper'),
     path('activity_list/diaper/<int:visit_id>/diaper_1/', views.diaper_1, name='diaper_1'),
     path('activity_list/diaper/<int:visit_id>/diaper_2/', views.diaper_2, name='diaper_2'),
