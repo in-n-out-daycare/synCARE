@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="wrapper">
-    <div class="box">Bottle</div>
-    <div class="box">Nurse</div>
-    <div class="box">Food</div>
+    <div class="box"><a href="{% url 'bottle' visit_id=visit_id %}">Bottle</a></div>
+    <div class="box"><a href="{% url 'nurse' visit_id=visit_id %}">Nurse</div>
+    <div class="box"><a href="{% url 'lunch' visit_id=visit_id %}">Food</div>
 </div>
 
 {% endblock %}

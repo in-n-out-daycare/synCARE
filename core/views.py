@@ -56,8 +56,8 @@ def action_list(request, visit_id):
     }
     return render(request, 'action_list.html', context=context)
 
-def food(request):
-    return render(request, 'food.html')
+def food(request, visit_id):
+    return render(request, 'food.html', {'visit_id': visit_id})
 
 def diaper(request, visit_id):
     return render(request, 'diaper.html', {'visit_id': visit_id})
@@ -83,6 +83,42 @@ def diaper_2(request, visit_id):
         child=visit.child,
     )
     diaper.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
+def bottle(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    bottle = Activity(
+        activity_type=Activity.INPUT,
+        subtype='B',
+        visit=visit,
+        child=visit.child
+    )
+    bottle.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
+def nurse(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    nurse = Activity(
+        activity_type=Activity.INPUT,
+        subtype='N',
+        visit=visit,
+        child=visit.child
+    )
+    nurse.save()
+
+    return redirect('action_list', visit_id=visit_id)
+
+def lunch(request, visit_id):
+    visit = get_object_or_404(Visit, id=visit_id)
+    lunch = Activity(
+        activity_type=Activity.INPUT,
+        subtype='L',
+        visit=visit,
+        child=visit.child
+    )
+    lunch.save()
 
     return redirect('action_list', visit_id=visit_id)
 
