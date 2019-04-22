@@ -5,15 +5,15 @@
 
 <div class="wrapper">
    
-    <div class="box" ><a href="#" onclick="submitBottleForm();"> Bottle</a>
-    <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
-        <div class="choices" >
-        <input type="radio" name="bottle_choice" value="All"> drank all<br>
-        <input type="radio" name="bottle_choice" value="1oz"> 1 oz left<br>
-        <input type="radio" name="bottle_choice" value="2oz"> 2 oz left<br>
-        <input type="radio" name="bottle_choice" value="3oz"> 3 oz left
-        </div>
-    </form>
+    <div class="box foodbox" ><button onclick="myFunction()" class="dropButton">Bottle</button>
+    
+    <div id="foodChoices" class="dropdownContent">
+    <a href="#">drank all</a><br>
+    <a href="#">1oz</a><br>
+    <a href="#">2oz</a><br>
+    <a href="#">3oz</a>
+    </div>
+    
     </div>
     <div class="box"><a href="#" onclick="submitNurseForm();">Nurse</a>
     <form id="nurse_form" method="POST" action="{% url 'nurse' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
@@ -23,6 +23,8 @@
         <input type="radio" name="nurse_choice" value="30min">30min<br>
         </div>
     </form></div>
+
+    
     <div class="box"><a href="#" onclick="submitFoodForm();">Food</a>
     <form id="food_form" method="POST" action="{% url 'food' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
         <div class="choices" >
