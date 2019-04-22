@@ -1,3 +1,4 @@
+
 function validateBottleForm () {
   const radios = document.getElementsByName('bottle_choice')
     let formValid = false
@@ -8,7 +9,7 @@ function validateBottleForm () {
         i++
     }
   if (!formValid) alert('Must choose a bottle option!')
-    return formValid
+  return formValid
 }
 
 function submitBottleForm () {
@@ -17,15 +18,15 @@ function submitBottleForm () {
 
 function validateNurseForm () {
   const radios = document.getElementsByName('nurse_choice')
-    let formValid = false
+  let formValid = false
 
-    let i = 0
-    while (!formValid && i < radios.length) {
+  let i = 0
+  while (!formValid && i < radios.length) {
     if (radios[i].checked) formValid = true
-        i++
-    }
+    i++
+  }
   if (!formValid) alert('Must choose a nurse option!')
-    return formValid
+  return formValid
 }
 
 function submitNurseForm () {
@@ -34,15 +35,15 @@ function submitNurseForm () {
 
 function validateLunchForm () {
   const radios = document.getElementsByName('lunch_choice')
-    let formValid = false
+  let formValid = false
 
-    let i = 0
-    while (!formValid && i < radios.length) {
+  let i = 0
+  while (!formValid && i < radios.length) {
     if (radios[i].checked) formValid = true
-        i++
-    }
+    i++
+  }
   if (!formValid) alert('Must choose a lunch option!')
-    return formValid
+  return formValid
 }
 
 function submitLunchForm () {
