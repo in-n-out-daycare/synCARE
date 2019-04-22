@@ -6,9 +6,9 @@
 
     <div class="box"><a href="{% url 'food' visit_id=visit_id %}">In</a></div>
     {% if open_nap|length >= 1 %}
-        <div class="nap-out" ><a href="{% url 'nap_out' activity_id=open_nap.0.id %}">Nap out</a></div>
+        <div class="box nap-out" ><a href="{% url 'nap_out' activity_id=open_nap.0.id %}">Nap out</a></div>
     {% else %}
-        <div class="nap-in" ><a href="{% url 'nap_in' visit_id=visit_id %}">Nap in</a></div>
+        <div class="box nap-in" ><a href="{% url 'nap_in' visit_id=visit_id %}">Nap in</a></div>
     {% endif %}
 
     <div class="box"><a href="{% url 'diaper' visit_id=visit_id %}">Out</a></div>
