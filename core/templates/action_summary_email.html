@@ -1,11 +1,6 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<!DOCTYPE html>
 
 <h1>Daily Summary - {{child}}</h1>
-{% for guardian in guardians %}
-    <p>{{ guardian.user.email }}</p>
-{% endfor %}
 <h3>{{ visit.check_in|date:"D d M Y" }}</h3>
 {% for nap in naps %}
     {{ time }}
@@ -16,7 +11,3 @@
     <p>Diaper change time: {{output.start_time|date:"h:i a" }}</p>
     <p>Diaper contents: {{ output.subtype }}</p>
 {% endfor%}
-
-<a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
-
-{% endblock %}

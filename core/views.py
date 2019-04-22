@@ -63,9 +63,10 @@ def action_summary(request, visit_id):
     naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     child = visit.child
+    guardians = child.guardians.all()
 
     context = {
-        # 'date': visit.check_in.strftime('%m-%d-%Y'),
+        'guardians': guardians,
         'naps': naps,
         'visit': visit,
         'child': child,
@@ -76,16 +77,30 @@ def action_summary(request, visit_id):
     return render(request, 'action_summary.html', context=context)
 
 def action_summary_email(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
+    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
+    child = visit.child
+    guardians = child.guardians.all()
+
     subject="Input//Output Daily Summary"
-    to = visit.child.guardian.user.email
+    to = [guardian.user.email for guardian in guardians]
     from_email = 'input_output@io.com'
 
-    message=get_template('action_summary.html').render()
+    context = {
+    'naps': naps,
+    'visit': visit,
+    'child': child,
+    'visit_id': visit_id,
+    'outputs': outputs,
+    } 
+
+    message=get_template('action_summary_email.html').render(context)
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
     msg.send()
 
-    return render(request,'action_summary.html', {'visit_id': visit_id})
+    return redirect('index')
 
 def food(request):
     return render(request, 'food.html')
