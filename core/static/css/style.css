@@ -22,6 +22,19 @@ a, a:visited, a:hover, a:active {
     
     justify-content: space-evenly;
 }
+
+button {
+    background-color: #fdf894;
+    border: none;
+    
+    padding: 15px 12px;
+    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+}
   
 .box {
     
@@ -32,7 +45,7 @@ a, a:visited, a:hover, a:active {
     border-radius: 20px;
     margin: 40px;
     padding: 25px;
-    padding-top: 75px;
+    padding-top: 45px;
     text-align: center;
     background-color: #f294fd;
     font-size: 35px;
