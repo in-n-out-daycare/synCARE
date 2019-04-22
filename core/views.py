@@ -169,15 +169,15 @@ def nurse(request, visit_id):
     return redirect('action_list', visit_id=visit_id)
 
 
-def lunch(request, visit_id):
+def food(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
-    lunch = Activity(
+    food = Activity(
         activity_type=Activity.INPUT,
-        subtype='L',
+        subtype='F',
         visit=visit,
         child=visit.child
     )
-    lunch.save()
+    food.save()
 
     return redirect('action_list', visit_id=visit_id)
 
