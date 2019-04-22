@@ -8,7 +8,7 @@
     <div class="wrapper tc flex-ns flex-wrap justify-around">
         {% for child in children %} 
             {% if iscaregiver %}
-                <div class="box ba bw3 w-30-ns mb3 h5" onclick="window.location.href = '{% url 'action_list' visit_id=child.visit.0.id %}')">
+                <div class="box ba bw3 w-30-ns mb3 h5" >
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
