@@ -128,7 +128,7 @@ def bottle(request, visit_id):
     )
     bottle.save()
    
-    return redirect('in_list', visit_id=visit_id)
+    return redirect('index')
 
 
 def diaper(request, visit_id):
@@ -144,7 +144,7 @@ def diaper_1(request, visit_id):
     )
     diaper.save()
 
-    return redirect('action_list', visit_id=visit_id)
+    return redirect('index')
 
 
 def diaper_2(request, visit_id):
@@ -157,7 +157,7 @@ def diaper_2(request, visit_id):
     )
     diaper.save()
 
-    return redirect('action_list', visit_id=visit_id)
+    return redirect('index')
 
 
 def nurse(request, visit_id):
@@ -170,7 +170,7 @@ def nurse(request, visit_id):
     )
     nurse.save()
 
-    return redirect('action_list', visit_id=visit_id)
+    return redirect('index')
 
 
 def food(request, visit_id):
@@ -183,7 +183,7 @@ def food(request, visit_id):
     )
     food.save()
 
-    return redirect('action_list', visit_id=visit_id)
+    return redirect('index')
 
 
 def visit(request):
