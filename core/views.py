@@ -160,7 +160,7 @@ def nurse(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     nurse = Activity(
         activity_type=Activity.INPUT,
-        subtype='N',
+        subtype='nursing',
         visit=visit,
         child=visit.child
     )
@@ -173,7 +173,7 @@ def food(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     food = Activity(
         activity_type=Activity.INPUT,
-        subtype='F',
+        subtype='food',
         visit=visit,
         child=visit.child
     )
