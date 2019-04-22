@@ -4,7 +4,6 @@
 
 body {
     background-image: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0349/6328/rstar_paper_pastel_yellow_mirror.png");
-
 }
 
 a, u {
@@ -110,8 +109,4 @@ button {
     .title_bar {
         display: flex;
     }
-}
-
-body{
-    padding: 1rem;
 }

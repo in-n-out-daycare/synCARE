@@ -62,6 +62,7 @@ def action_summary(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
     naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
+    inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     child = visit.child
     guardians = child.guardians.all()
 
@@ -72,6 +73,7 @@ def action_summary(request, visit_id):
         'child': child,
         'visit_id': visit_id,
         'outputs': outputs,
+        'inputs': inputs,
     }
 
     return render(request, 'action_summary.html', context=context)
@@ -82,6 +84,7 @@ def action_summary_email(request, visit_id):
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     child = visit.child
     guardians = child.guardians.all()
+    inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
 
     subject="Input//Output Daily Summary"
     to = [guardian.user.email for guardian in guardians]
@@ -93,6 +96,7 @@ def action_summary_email(request, visit_id):
     'child': child,
     'visit_id': visit_id,
     'outputs': outputs,
+    'inputs': inputs,
     } 
 
     message=get_template('action_summary_email.html').render(context)
