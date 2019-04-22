@@ -21,8 +21,7 @@
         <h1 class="title"><img src="/static/css/io_logo.png"></h1>
         {% if user.is_authenticated %}
         <div class="username">
-            <h4><a href="#">{{ user.get_username }}</a> |
-                <a href="{% url 'account_logout' %}">Logout</a></h4>
+            <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
         </div>
         {% else %}
         <div class="login">

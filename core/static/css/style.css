@@ -70,14 +70,31 @@ button {
 }
 
 .title_bar {
-    
-    justify-content: space-between;
+    display: flex;
+    justify-content: center;
     padding: 15px;
 }
 
 .title {
     width: 50%;
     text-align: center;
+    margin-top: 2px;
+    padding-top: 2px;
+}
+
+.home {
+    font-size: 35px;
+    margin: 25px;
+}
+
+.login {
+    font-size: 35px;
+    margin: 25px;
+}
+
+.username {
+    font-size: 30px;
+    margin: 25px;
 }
 
 @media screen and (min-width: 768px) {
