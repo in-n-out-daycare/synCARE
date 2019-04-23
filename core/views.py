@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 from .forms import CommentForm
+from django.contrib import messages
 
 
 def index(request):
@@ -96,37 +97,6 @@ def action_summary(request, visit_id):
     return render(request, 'action_summary.html', context=context)
 
 
-def action_summary_email(request, visit_id):
-    visit = Visit.objects.get(id=visit_id)
-    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
-    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
-    child = visit.child
-    guardians = child.guardians.all()
-    inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
-    comment = visit.comment
-
-    subject="Input//Output Daily Summary"
-    to = [guardian.user.email for guardian in guardians]
-    from_email = 'input_output@io.com'
-
-    context = {
-    'naps': naps,
-    'visit': visit,
-    'child': child,
-    'visit_id': visit_id,
-    'outputs': outputs,
-    'inputs': inputs,
-    'comment': comment,
-    } 
-
-    message=get_template('action_summary_email.html').render(context)
-    msg = EmailMessage(subject, message, to=to, from_email=from_email)
-    msg.content_subtype = 'html'
-    msg.send()
-
-    return redirect('index')
-
-
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     context = {
@@ -147,10 +117,9 @@ def bottle(request, visit_id):
         child=visit.child,
     )
     bottle.save()
-   
+    messages.success(request, f"{visit.child} {option} bottle saved!")
+
     return redirect('index')
-
-
 
 
 @require_http_methods(['POST'])
@@ -165,33 +134,10 @@ def diaper(request, visit_id):
         child=visit.child,
     )
     diaper.save()
+    messages.success(request, f"{visit.child} diaper change saved!")
    
     return redirect('index')
 
-# def diaper_1(request, visit_id):
-#     visit = get_object_or_404(Visit, id=visit_id)
-#     diaper = Activity(
-#         activity_type=Activity.OUTPUT,
-#         subtype='1',
-#         visit=visit,
-#         child=visit.child
-#     )
-#     diaper.save()
-
-#     return redirect('index')
-
-
-# def diaper_2(request, visit_id):
-#     visit = get_object_or_404(Visit, id=visit_id)
-#     diaper = Activity(
-#         activity_type=Activity.OUTPUT,
-#         subtype='2',
-#         visit=visit,
-#         child=visit.child,
-#     )
-#     diaper.save()
-
-#     return redirect('index')
 
 @require_http_methods(['POST'])
 def nurse(request, visit_id):
@@ -205,6 +151,7 @@ def nurse(request, visit_id):
         child=visit.child
     )
     nurse.save()
+    messages.success(request, f"{visit.child} nursing saved!")
 
     return redirect('index')
 
@@ -221,6 +168,7 @@ def food(request, visit_id):
         child=visit.child
     )
     food.save()
+    messages.success(request, f"{visit.child} food saved!")
 
     return redirect('index')
 
@@ -254,6 +202,7 @@ def check_out(request, visit_id):
     msg.content_subtype = 'html'
     msg.send()
     visit.save()
+    messages.success(request, f"{visit.child} checked out and email sent to guardian - {to}.")
 
     return redirect('index')
 
@@ -264,6 +213,8 @@ def check_in(request, child_id):
         child=child
     )
     visit.save()
+    messages.success(request, f"{visit.child} checked in!")
+
     return redirect('index')
 
 
@@ -271,6 +222,8 @@ def nap_out(request, activity_id):
     nap = Activity.objects.get(id=activity_id)
     nap.end_time = datetime.datetime.now()
     nap.save()
+    messages.success(request, f"{nap.child} nap ended.")
+
     return redirect('action_list', visit_id=nap.visit.id)
 
 
@@ -282,5 +235,6 @@ def nap_in(request, visit_id):
         child=visit.child,
     )
     nap.save()
-    
-    return redirect('action_list', visit_id=visit_id)
+    messages.success(request, f"{visit.child} nap started.")
+
+    return redirect('index')
