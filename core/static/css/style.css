@@ -63,7 +63,7 @@ a, a:visited, a:hover, a:active {
     height: 155px;
     width: 313px;;
     color: white;
-    border-style: groove;
+    border-style: ridge;
     
     border-radius: 40px;
     margin: 40px;
