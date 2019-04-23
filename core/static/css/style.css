@@ -10,6 +10,11 @@ a, u {
     text-decoration: none;
 }
 
+form {
+    border-bottom: 1px dotted black;
+    padding-bottom: 1rem;
+}
+
 a, a:visited, a:hover, a:active {
     color: inherit;
 }
@@ -115,6 +120,10 @@ a, a:visited, a:hover, a:active {
     margin: 25px;
 }
 
+.action_header {
+    text-align: center;
+}
+
 .dropdownContent {
     display: none;
     position: absolute;
@@ -140,3 +149,4 @@ a, a:visited, a:hover, a:active {
         display: flex;
     }
 }
+
