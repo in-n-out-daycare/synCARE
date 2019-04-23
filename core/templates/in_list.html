@@ -5,18 +5,50 @@
 
 <div class="wrapper">
    
-    <div class="box" ><a href="#" onclick="submitBottleForm();"> Bottle</a>
-    <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}" class="mv3 w-60 ph5 georgia">{% csrf_token %}
-        <div class="choices" >
-        <input type="radio" name="bottle_choice" value="All"> drank all<br>
-        <input type="radio" name="bottle_choice" value="1oz"> 1 oz left<br>
-        <input type="radio" name="bottle_choice" value="2oz"> 2 oz left<br>
-        <input type="radio" name="bottle_choice" value="3oz"> 3 oz left
+    <div class="foodbox" ><button onclick="myBottleFunction()" class="dropButton">Bottle</button>
+    
+        <div id="bottleChoices" class="dropdownContent">
+            <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}">{% csrf_token %}
+                <div class="choicewrapper">
+                <button class="checkbutton" name="bottle_choice" value="All">All</button>
+                <button class="checkbutton" name="bottle_choice" value="1oz">1oz</button>
+                <button class="checkbutton" name="bottle_choice" value="2oz">2oz</button>
+                <button class="checkbutton" name="bottle_choice" value="3oz">3oz</button>
+                </div>    
+            </form>
         </div>
-    </form>
+    
     </div>
-    <div class="box"><a href="{% url 'nurse' visit_id=visit_id %}">Nurse</div>
-    <div class="box"><a href="{% url 'food' visit_id=visit_id %}">Food</div>
+
+    <div class="foodbox" ><button onclick="myNurseFunction()" class="dropButton">Nurse</button>
+    
+        <div id="nurseChoices" class="dropdownContent">
+            <form id="nurse_form" method="POST" action="{% url 'nurse' visit_id=visit_id %}">{% csrf_token %}
+                
+                <button name="nurse_choice" value="10min">10min</button>
+                <button name="nurse_choice" value="20min">20min</button>
+                <button name="nurse_choice" value="30min">30min</button>
+                    
+            </form>
+        </div>
+    
+    </div>
+    
+
+    <div class="foodbox" ><button onclick="myLunchFunction()" class="dropButton">Lunch</button>
+    
+        <div id="lunchChoices" class="dropdownContent">
+            <form id="lunch_form" method="POST" action="{% url 'food' visit_id=visit_id %}">{% csrf_token %}
+                
+                <button name="food_choice" value="none">None</button>
+                <button name="food_choice" value="liked">Liked</button>
+                <button name="food_choice" value="loved">Loved</button>
+                    
+            </form>
+        </div>
+    
+    </div>
+    
 </div>
 
 {% endblock %}

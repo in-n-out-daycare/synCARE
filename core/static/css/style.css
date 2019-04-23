@@ -27,12 +27,12 @@ a, a:visited, a:hover, a:active {
     justify-content: space-evenly;
 }
 
-button {
+.checkbutton {
     background-color: #ff583e;
     border: none;
     color: white;
     padding: 15px 12px;
-    
+    cursor: pointer;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -54,7 +54,26 @@ button {
     background-color: #ffb841;
     font-size: 35px;
     font-weight: bold;
-    cursor: pointer;
+    
+    text-decoration: none;
+}
+
+.dropButton {
+    
+    height: 155px;
+    width: 313px;;
+    color: white;
+    border-style: groove;
+    
+    border-radius: 40px;
+    margin: 40px;
+    padding: 25px;
+    padding-top: 45px;
+    text-align: center;
+    background-color: #ffb841;
+    font-size: 35px;
+    font-weight: bold;
+    
     text-decoration: none;
 }
   
@@ -101,10 +120,24 @@ button {
     margin: 25px;
 }
 
+<<<<<<< HEAD
 .action_header {
     text-align: center;
 }
 
+=======
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.show {display:block;}
+
+>>>>>>> master
 @media screen and (min-width: 768px) {
     .wrapper {
         display: flex;

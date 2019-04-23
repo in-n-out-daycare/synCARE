@@ -30,11 +30,11 @@ function validateNurseForm () {
 }
 
 function submitNurseForm () {
-  if (validatenurseForm()) document.getElementById('nurse_form').submit()
+  if (validateNurseForm()) document.getElementById('nurse_form').submit()
 }
 
-function validateLunchForm () {
-  const radios = document.getElementsByName('lunch_choice')
+function validateFoodForm () {
+  const radios = document.getElementsByName('food_choice')
   let formValid = false
 
   let i = 0
@@ -42,10 +42,41 @@ function validateLunchForm () {
     if (radios[i].checked) formValid = true
     i++
   }
-  if (!formValid) alert('Must choose a lunch option!')
+  if (!formValid) alert('Must choose a food option!')
   return formValid
 }
 
-function submitLunchForm () {
-  if (validatelunchForm()) document.getElementById('lunch_form').submit()
+function submitFoodForm () {
+  if (validateFoodForm()) document.getElementById('food_form').submit()
+}
+
+
+function myBottleFunction() {
+    
+    document.getElementById("bottleChoices").classList.toggle("show");
+}
+
+function myNurseFunction() {
+    
+    document.getElementById("nurseChoices").classList.toggle("show");
+}
+
+function myLunchFunction() {
+    
+    document.getElementById("lunchChoices").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    
+    if (!event.target.matches('.dropButton')) {
+        
+        var dropdowns = document.getElementsByClassName("dropdownContent");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
 }

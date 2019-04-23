@@ -180,12 +180,14 @@ def diaper_2(request, visit_id):
 
     return redirect('index')
 
-
+@require_http_methods(['POST'])
 def nurse(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
+    option = request.POST['nurse_choice']
     nurse = Activity(
         activity_type=Activity.INPUT,
         subtype='nursing',
+        subtype_option=option,
         visit=visit,
         child=visit.child
     )
@@ -193,12 +195,14 @@ def nurse(request, visit_id):
 
     return redirect('index')
 
-
+@require_http_methods(['POST'])
 def food(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
+    option = request.POST['food_choice']
     food = Activity(
         activity_type=Activity.INPUT,
         subtype='food',
+        subtype_option=option,
         visit=visit,
         child=visit.child
     )
