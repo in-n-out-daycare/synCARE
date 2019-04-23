@@ -74,12 +74,14 @@ a, a:visited, a:hover, a:active {
 }
 
 .foodbox {
+    display:flex;
+    justify-content:center;
     position: relative;
 }
 
 .dropdownContent {
-    display: none;
-    
+    display: flex;
+    justify-content: center;
     position: absolute;
     background-color: #f1f1f1;
     width: 100%;
