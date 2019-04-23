@@ -53,7 +53,12 @@ function submitFoodForm () {
 
 function myFunction() {
     
-    document.getElementById("foodChoices").classList.toggle("show");
+    document.getElementById("bottleChoices").classList.toggle("show");
+}
+
+function myFunction() {
+    
+    document.getElementById("nurseChoices").classList.toggle("show");
 }
 
 window.onclick = function(event) {
