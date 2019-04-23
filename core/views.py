@@ -151,34 +151,21 @@ def bottle(request, visit_id):
     return redirect('index')
 
 
+@require_http_methods(['POST'])
 def diaper(request, visit_id):
-    return render(request, 'diaper.html', {'visit_id': visit_id})
-
-
-def diaper_1(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
+    option = request.POST['diaper_choice']
     diaper = Activity(
         activity_type=Activity.OUTPUT,
-        subtype='1',
-        visit=visit,
-        child=visit.child
-    )
-    diaper.save()
-
-    return redirect('index')
-
-
-def diaper_2(request, visit_id):
-    visit = get_object_or_404(Visit, id=visit_id)
-    diaper = Activity(
-        activity_type=Activity.OUTPUT,
-        subtype='2',
+        subtype='diaper',
+        subtype_option=option,
         visit=visit,
         child=visit.child,
     )
     diaper.save()
-
+   
     return redirect('index')
+
 
 @require_http_methods(['POST'])
 def nurse(request, visit_id):
@@ -194,6 +181,7 @@ def nurse(request, visit_id):
     nurse.save()
 
     return redirect('index')
+
 
 @require_http_methods(['POST'])
 def food(request, visit_id):

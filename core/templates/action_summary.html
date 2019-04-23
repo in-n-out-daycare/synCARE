@@ -18,7 +18,7 @@
     <p><strong>Nap:</strong> {{ nap.start_time|date:"h:i a" }} - {{ nap.end_time|date:"h:i a"}}</p>
 {% endfor %}
 {% for output in outputs %}
-    <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype }}</p>
+    <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype_option }}</p>
 {% endfor%}
 {% for input in inputs %}
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>

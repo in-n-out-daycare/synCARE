@@ -1,13 +1,13 @@
 
 function validateBottleForm () {
   const radios = document.getElementsByName('bottle_choice')
-    let formValid = false
+  let formValid = false
 
-    let i = 0
-    while (!formValid && i < radios.length) {
+  let i = 0
+  while (!formValid && i < radios.length) {
     if (radios[i].checked) formValid = true
-        i++
-    }
+    i++
+  }
   if (!formValid) alert('Must choose a bottle option!')
   return formValid
 }
@@ -50,20 +50,20 @@ function submitFoodForm () {
   if (validateFoodForm()) document.getElementById('food_form').submit()
 }
 
-
-function myBottleFunction() {
-    
-    document.getElementById("bottleChoices").classList.toggle("show");
+function myBottleFunction () {
+  document.getElementById('bottleChoices').classList.toggle('show')
 }
 
-function myNurseFunction() {
-    
-    document.getElementById("nurseChoices").classList.toggle("show");
+function myNurseFunction () {
+  document.getElementById('nurseChoices').classList.toggle('show')
 }
 
-function myLunchFunction() {
-    
-    document.getElementById("lunchChoices").classList.toggle("show");
+function myLunchFunction () {
+  document.getElementById('lunchChoices').classList.toggle('show')
+}
+
+function myDiaperFunction() {
+    document.getElementById("diaperChoices").classList.toggle("show");
 }
 
 window.onclick = function(event) {
@@ -79,4 +79,5 @@ window.onclick = function(event) {
             }
         }
     }
+  }
 }

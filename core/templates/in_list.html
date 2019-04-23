@@ -38,7 +38,7 @@
     <div class="foodbox" ><button onclick="myLunchFunction()" class="dropButton">Lunch</button>
     
         <div id="lunchChoices" class="dropdownContent">
-            <form id="lunch_form" method="POST" action="{% url 'food' visit_id=visit_id %}">{% csrf_token %}
+            <form id="food_form" method="POST" action="{% url 'food' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
                 <button class="choicebutton" name="food_choice" value="none">None</button>
                 <button class="choicebutton" name="food_choice" value="liked">Liked</button>

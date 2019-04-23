@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script src="/static/js/main.js"></script>
 
 <div class="action_header">
     <h1>{{ child }}</h1>
@@ -15,7 +16,18 @@
         <div class="box nap-in" ><a href="{% url 'nap_in' visit_id=visit_id %}">Nap in</a></div>
     {% endif %}
 
-    <div class="box"><a href="{% url 'diaper' visit_id=visit_id %}">Out</a></div>
+    <div class="foodbox" ><button onclick="myDiaperFunction()" class="dropButton">Diaper</button>
+    
+        <div id="diaperChoices" class="dropdownContent">
+            <form id="diaper_form" method="POST" action="{% url 'diaper' visit_id=visit_id %}">{% csrf_token %}
+                <div class="choicewrapper">
+                <button class="choicebutton" name="diaper_choice" value="Diaper1"> 1 </button>
+                <button class="choicebutton" name="diaper_choice" value="Diaper2"> 2 </button>
+                </div>    
+            </form>
+        </div>
+    
+    </div>
     <div class="box"><a href="{% url 'action_summary' visit_id=visit_id %}">Comments</a></div>
 </div>
 
