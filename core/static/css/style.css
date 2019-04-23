@@ -34,23 +34,23 @@ a, a:visited, a:hover, a:active {
     font-size: 16px;
     border-radius: 20px;
 }
-  
-.box {
-    
-    height: 80px;
+
+.choicebutton {
+    background-color: #ff583e;
+    border: none;
     color: white;
-    border-style: groove;
-    
-    border-radius: 20px;
-    margin: 40px;
-    padding: 25px;
-    padding-top: 45px;
+    margin: 20px;
+    padding: 30px;
+    cursor: pointer;
     text-align: center;
-    background-color: #ffb841;
-    font-size: 35px;
-    font-weight: bold;
-    
     text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+.choicewrapper {
+   
 }
 
 .dropButton {
@@ -71,9 +71,39 @@ a, a:visited, a:hover, a:active {
     
     text-decoration: none;
 }
-  
-.box:hover {
+
+.foodbox {
+    position: relative;
+}
+
+.dropdownContent {
+    display: none;
     
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.show {display:block;}
+  
+.box {
+    height: 80px;
+    color: white;
+    border-style: groove;
+    border-radius: 20px;
+    margin: 40px;
+    padding: 25px;
+    padding-top: 45px;
+    text-align: center;
+    background-color: #ffb841;
+    font-size: 35px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.box:hover {
     background-color: #f99d02;
     color:white;
     transition: all .3s ease;
@@ -115,16 +145,7 @@ a, a:visited, a:hover, a:active {
     margin: 25px;
 }
 
-.dropdownContent {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
 
-.show {display:block;}
 
 @media screen and (min-width: 768px) {
     .wrapper {
