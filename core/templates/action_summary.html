@@ -6,11 +6,11 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    <p>
-    {{ form }}
-    </p>
+    {{ form.as_p }}
     <input type="submit" value="Submit">
 </form>
+
+<p><strong>Comments:</strong>{{ comment|linebreaks }}</p>
 
 <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}
 
@@ -24,8 +24,6 @@
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
 {% endfor %}
 
-<p>Comments: {{ comment }}</p>
-
-<a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
+{% comment %} <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a> {% endcomment %}
 
 {% endblock %}

@@ -71,9 +71,9 @@ def action_summary(request, visit_id):
 
         if form.is_valid():
             if visit.comment == None:
-                visit.comment = form.cleaned_data['comment']
+                visit.comment = " - " + form.cleaned_data['comment']
             else:
-                visit.comment += " -" + (form.cleaned_data['comment'])
+                visit.comment += "\n - " + (form.cleaned_data['comment'])
             visit.save()
 
         return redirect('action_summary', visit_id=visit_id)

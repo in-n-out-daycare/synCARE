@@ -16,9 +16,11 @@
     <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype }}</p>
 {% endfor%}
 
-<p><strong>Comments: {{ comment }}</strong></p>
+<p><strong>Comments: {{ comment|linebreaks }}</strong></p>
+
+<p><strong>Check Out:</strong> {{ visit.check_out|date:"h:i a"}}
 
 <p>Sincerely,</p>
-<p>Team (name TBD)</p>
+<p>WeeCare Team</p>
 
 {% endblock %}
