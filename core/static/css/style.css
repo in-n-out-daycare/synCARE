@@ -3,7 +3,7 @@
 }
 
 body {
-    background-image: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0349/6328/rstar_paper_pastel_yellow_mirror.png");
+    /* background-image: url("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0349/6328/rstar_paper_pastel_yellow_mirror.png"); */
 }
 
 a, u {
@@ -126,17 +126,17 @@ a, a:visited, a:hover, a:active {
     padding: 15px;
 }
 
-.title {
+.home {
     width: 50%;
-    text-align: center;
+    text-align: left;
     margin-top: 2px;
     padding-top: 2px;
 }
 
-.home {
+/* .home {
     font-size: 35px;
     margin: 25px;
-}
+} */
 
 .login {
     font-size: 35px;
