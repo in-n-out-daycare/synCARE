@@ -10,6 +10,11 @@ a, u {
     text-decoration: none;
 }
 
+form {
+    border-bottom: 1px dotted black;
+    padding-bottom: 1rem;
+}
+
 a, a:visited, a:hover, a:active {
     color: inherit;
 }
@@ -146,6 +151,19 @@ a, a:visited, a:hover, a:active {
 }
 
 
+.action_header {
+    text-align: center;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
 
 @media screen and (min-width: 768px) {
     .wrapper {
@@ -161,3 +179,4 @@ a, a:visited, a:hover, a:active {
         display: flex;
     }
 }
+
