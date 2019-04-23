@@ -18,7 +18,7 @@
                     <div class="check-out"><a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton">Check out</button></a></div>
                 {% else %}
                 
-                    <div class="check-in"><a href="{% url 'check_in' child_id=child.child_id %}"><button>Check in</button class="checkbutton"></a></div>
+                    <div class="check-in"><a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton">Check in</button></a></div>
                 {% endif %}  
                 </div> 
             {% endif %}
