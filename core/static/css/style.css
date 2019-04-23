@@ -53,17 +53,14 @@ a, a:visited, a:hover, a:active {
     font-size: 16px;
     border-radius: 20px;
 }
-
-.choicewrapper {
-   
-}
+    
 
 .dropButton {
     
     height: 155px;
     width: 313px;;
     color: white;
-    border-style: ridge;
+    border-style: groove;
     
     border-radius: 40px;
     margin: 40px;
@@ -91,7 +88,9 @@ a, a:visited, a:hover, a:active {
     z-index: 1;
 }
 
-.show {display:block;}
+.show {
+    display:block;
+}
   
 .box {
     height: 80px;
@@ -153,15 +152,6 @@ a, a:visited, a:hover, a:active {
 
 .action_header {
     text-align: center;
-}
-
-.dropdownContent {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
 }
 
 
