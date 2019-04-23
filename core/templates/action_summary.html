@@ -2,10 +2,18 @@
 
 {% block content %}
 
-<h1>Daily Summary - {{child}}</h1>
+<h1>{{child}} - {{ visit.check_in|date:"M d Y"}}</h1>
 
-<h3>{{ visit.check_in|date:"D d M Y" }}</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>
+    {{ form }}
+    </p>
+    <input type="submit" value="Submit">
+</form>
+
 <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}
+
 {% for nap in naps %}
     <p><strong>Nap:</strong> {{ nap.start_time|date:"h:i a" }} - {{ nap.end_time|date:"h:i a"}}</p>
 {% endfor %}
@@ -15,15 +23,8 @@
 {% for input in inputs %}
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
 {% endfor %}
-{{ comment }}
 
-<form action="" method="post">
-    {% csrf_token %}
-    <p>
-    {{ form.as_p }}
-    </p>
-    <input type="submit" value="Comment">
-</form>
+<p>Comments: {{ comment }}</p>
 
 <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a>
 

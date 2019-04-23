@@ -30,19 +30,17 @@ urlpatterns = [
     path('activity_list/<int:visit_id>/summary/email/', views.action_summary_email, name='action_summary_email'),
     path('activity_list/in_list/<int:visit_id>/',views.in_list, name='in_list' ),
     path('activity_list/in_list/<int:visit_id>/bottle/', views.bottle, name='bottle'),
-    # bottle moved from right after in_list to end of url to mirror nurse and food. potential trouble spot
     path('activity_list/in_list/<int:visit_id>/nurse/', views.nurse, name='nurse'),
     path('activity_list/in_list/<int:visit_id>/food/', views.food, name='food'),
     path('activity_list/diaper/<int:visit_id>/', views.diaper, name='diaper'),
     path('activity_list/diaper/<int:visit_id>/diaper_1/', views.diaper_1, name='diaper_1'),
     path('activity_list/diaper/<int:visit_id>/diaper_2/', views.diaper_2, name='diaper_2'),
-    path('visit/', views.ActivityListView.as_view(), name='visit'),
-    # allauth registration
-    path('accounts/', include('allauth.urls')),
     path('visit/check_out/<int:visit_id>/', views.check_out, name='check_out'),
     path('visit/new/<uuid:child_id>/', views.check_in, name='check_in'),
     path('visit/nap_in/<int:visit_id>/', views.nap_in, name='nap_in'),
     path('visit/nap_out/<int:activity_id>/', views.nap_out, name='nap_out'),
+    # allauth registration
+    path('accounts/', include('allauth.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -10,6 +10,11 @@ a, u {
     text-decoration: none;
 }
 
+form {
+    border-bottom: 1px dotted black;
+    padding-bottom: 1rem;
+}
+
 a, a:visited, a:hover, a:active {
     color: inherit;
 }
@@ -96,6 +101,10 @@ button {
     margin: 25px;
 }
 
+.action_header {
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     .wrapper {
         display: flex;
@@ -110,3 +119,4 @@ button {
         display: flex;
     }
 }
+
