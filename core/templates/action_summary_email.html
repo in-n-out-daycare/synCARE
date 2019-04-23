@@ -13,12 +13,14 @@
     <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
 {% endfor %}
 {% for output in outputs %}
-    <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype }}</p>
+    <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype_option }}</p>
 {% endfor%}
 
-<p><strong>Comments: {{ comment }}</strong></p>
+<p><strong>Comments: {{ comment|linebreaks }}</strong></p>
+
+<p><strong>Check Out:</strong> {{ visit.check_out|date:"h:i a"}}
 
 <p>Sincerely,</p>
-<p>Team (name TBD)</p>
+<p>WeeCare Team</p>
 
 {% endblock %}
