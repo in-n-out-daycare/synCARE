@@ -5,22 +5,22 @@
 
 <div class="wrapper">
    
-    <div class="box foodbox" ><button onclick="myBottleFunction()" class="dropButton">Bottle</button>
+    <div class="foodbox" ><button onclick="myBottleFunction()" class="dropButton">Bottle</button>
     
         <div id="bottleChoices" class="dropdownContent">
             <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}">{% csrf_token %}
-                
-                <button name="bottle_choice" value="All">All</button>
-                <button name="bottle_choice" value="1oz">1oz</button>
-                <button name="bottle_choice" value="2oz">2oz</button>
-                <button name="bottle_choice" value="3oz">3oz</button>
-                    
+                <div class="choicewrapper">
+                <button class="checkbutton" name="bottle_choice" value="All">All</button>
+                <button class="checkbutton" name="bottle_choice" value="1oz">1oz</button>
+                <button class="checkbutton" name="bottle_choice" value="2oz">2oz</button>
+                <button class="checkbutton" name="bottle_choice" value="3oz">3oz</button>
+                </div>    
             </form>
         </div>
     
     </div>
 
-    <div class="box foodbox" ><button onclick="myNurseFunction()" class="dropButton">Nurse</button>
+    <div class="foodbox" ><button onclick="myNurseFunction()" class="dropButton">Nurse</button>
     
         <div id="nurseChoices" class="dropdownContent">
             <form id="nurse_form" method="POST" action="{% url 'nurse' visit_id=visit_id %}">{% csrf_token %}
@@ -35,7 +35,7 @@
     </div>
     
 
-    <div class="box foodbox" ><button onclick="myLunchFunction()" class="dropButton">Lunch</button>
+    <div class="foodbox" ><button onclick="myLunchFunction()" class="dropButton">Lunch</button>
     
         <div id="lunchChoices" class="dropdownContent">
             <form id="lunch_form" method="POST" action="{% url 'food' visit_id=visit_id %}">{% csrf_token %}
