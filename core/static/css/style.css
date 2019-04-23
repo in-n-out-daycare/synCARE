@@ -80,7 +80,7 @@ a, a:visited, a:hover, a:active {
 }
 
 .dropdownContent {
-    display: flex;
+    display: none;
     justify-content: center;
     position: absolute;
     background-color: #f1f1f1;
