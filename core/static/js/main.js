@@ -51,14 +51,19 @@ function submitFoodForm () {
 }
 
 
-function myFunction() {
+function myBottleFunction() {
     
     document.getElementById("bottleChoices").classList.toggle("show");
 }
 
-function myFunction() {
+function myNurseFunction() {
     
     document.getElementById("nurseChoices").classList.toggle("show");
+}
+
+function myLunchFunction() {
+    
+    document.getElementById("lunchChoices").classList.toggle("show");
 }
 
 window.onclick = function(event) {
