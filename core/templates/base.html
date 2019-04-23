@@ -16,9 +16,9 @@
 
     <header class="title_bar">
         <div class="home" center>
-            <h4><a href="{% url 'index' %}">HOME</a></h4>
+            <h4><a href="{% url 'index' %}"><img src="/static/css/io_logo.png"></a></h4>
         </div>
-        <h1 class="title"><img src="/static/css/io_logo.png"></h1>
+        {% comment %} <h1 class="title"><img src="/static/css/io_logo.png"></h1> {% endcomment %}
         {% if user.is_authenticated %}
         <div class="username">
             <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
