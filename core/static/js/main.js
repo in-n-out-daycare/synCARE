@@ -66,6 +66,11 @@ function myDiaperFunction() {
     document.getElementById("diaperChoices").classList.toggle("show");
 }
 
+function myDiaperFunction() {
+    
+    document.getElementById("diaperChoices").classList.toggle("show");
+}
+
 window.onclick = function(event) {
     
     if (!event.target.matches('.dropButton')) {
