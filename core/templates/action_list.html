@@ -8,14 +8,16 @@
 </div>
 
 <div class="wrapper">
+    <div class="subwrapper">
     <a href="{% url 'in_list' visit_id=visit_id %}"><div class="box">Feeding</div></a>
-
+    </div>
+    <div class="subwrapper">
     {% if open_nap|length >= 1 %}
         <a href="{% url 'nap_out' activity_id=open_nap.0.id %}"><div class="box nap-out" >End Nap</div></a>
     {% else %}
         <a href="{% url 'nap_in' visit_id=visit_id %}"><div class="box nap-in" >Start Nap</div></a>
     {% endif %}
-
+    </div>
 
     <div class="foodbox" ><button onclick="myDiaperFunction()" class="dropButton">Diaper</button>
     
@@ -30,8 +32,9 @@
         </div>
     
     </div>
-
+    <div class="subwrapper">
     <a href="{% url 'action_summary' visit_id=visit_id %}"><div class="box">Comments</div></a>
+    </div>
 </div>
 
 {% endblock %}
