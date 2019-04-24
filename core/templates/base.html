@@ -11,34 +11,36 @@
         <link href="https://fonts.googleapis.com/css?family=Short+Stack" rel="stylesheet">
         
         {% block meta %}{% endblock %}
-        <title>{% block title %}In-N-Out{% endblock %}</title>
+        <title>{% block title %}WeeCare{% endblock %}</title>
     </head>
 
-    <header class="title_bar">
-        <div class="home" center>
-            <h4><a href="{% url 'index' %}"><img src="/static/css/io_logo.png"></a></h4>
+   
+        <div class="home">
+            <a href="{% url 'index' %}"><img src="/static/css/WeeCare_logo.png" style="width:400px;height:400px;"></a>
         </div>
-        {% comment %} <h1 class="title"><img src="/static/css/io_logo.png"></h1> {% endcomment %}
+     </div>
         {% if user.is_authenticated %}
-        <div class="username">
-            <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
-        </div>
-        {% else %}
-        <div class="login">
-            <h4><a href="{% url 'account_login' %}">Login</a> |
-                <a href="{% url 'account_signup' %}">Register</a></h4>
+        <div class="title_bar">
+            <div class="base_bar">
+                <div class="username">
+                    <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
+                </div>
+                {% else %}
+                <div class="login">
+                <h4><a href="{% url 'account_login' %}">Login</a> |
+                    <a href="{% url 'account_signup' %}">Register</a></h4>
+            </div>
         </div>
         {% endif %}
+    </div>
 
-    </header>
-
-    <div>
+    <div class="messages_box">
     {% if messages %}
-    <ul class="messages">
+    <div class="messages">
         {% for message in messages %}
-        <li class="{{ message.tags }}">{{ message }}</li>
+        <p class="{{ message.tags }}">{{ message }}</p>
         {% endfor %}
-    </ul>
+    </div>
     {% endif %}
     </div>
 
