@@ -21,7 +21,7 @@ a, a:visited, a:hover, a:active {
     
 
     border-radius: 7px;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .checkbutton {
@@ -101,13 +101,20 @@ a, a:visited, a:hover, a:active {
     display:block;
 }
   
+.subwrapper {
+    display: flex;
+    justify-content:center;
+}
+
 .box {
-    width: 20%;
+    display: block;
+    justify-content: center;
+    width:200px;
     height: 80px;
     color: white;
     border-style: groove;
     border-radius: 20px;
-    margin: 40px;
+    margin: 40px 60px 5px 60px;
     padding: 25px;
     padding-top: 45px;
     text-align: center;
