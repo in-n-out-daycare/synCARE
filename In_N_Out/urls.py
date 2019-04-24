@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/home/', permanent=True)),
     path('home/', views.index, name='index'),
+    path('home/<int:visit_id>/guardian_summary/', views.guardian_summary, name='guardian_summary'),
     path('activity_list/<int:visit_id>/', views.action_list, name='action_list'),
     path('activity_list/<int:visit_id>/summary/', views.action_summary, name='action_summary'),
     path('activity_list/in_list/<int:visit_id>/',views.in_list, name='in_list' ),

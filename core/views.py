@@ -32,8 +32,19 @@ def index(request):
             )
 
     if is_guardian:
-        children = Guardian.objects.get(user=request.user).children.all
-        return render(request, 'visit.html')
+        children = Child.objects.filter(guardians__user=request.user)
+        for child in children:
+            latest_visit = child.visits.latest('check_in')
+
+        context = {
+            'latest_visit': latest_visit,
+            'children': children,
+            'isguardian': is_guardian,
+            'iscaregiver': is_caregiver,
+            'isadministrator': is_administrator,
+        }
+
+        return render(request, 'index.html', context=context)
 
     context = {
         'children': children,
@@ -41,6 +52,7 @@ def index(request):
         'iscaregiver': is_caregiver,
         'isadministrator': is_administrator,
     }
+
     return render(request, 'index.html', context=context)
 
 
@@ -71,7 +83,7 @@ def action_summary(request, visit_id):
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            if visit.comment == None:
+            if visit.comment is None:
                 visit.comment = " - " + form.cleaned_data['comment']
             else:
                 visit.comment += "\n - " + (form.cleaned_data['comment'])
@@ -96,6 +108,24 @@ def action_summary(request, visit_id):
 
     return render(request, 'action_summary.html', context=context)
 
+def guardian_summary(request, visit_id):
+    visit = Visit.objects.get(id=visit_id)
+    comment = visit.comment
+    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
+    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
+    inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
+    child = visit.child
+
+    context = {
+        'naps': naps,
+        'visit': visit,
+        'child': child,
+        'visit_id': visit_id,
+        'outputs': outputs,
+        'inputs': inputs,
+    }
+
+    return render(request, 'guardian_summary.html', context=context)
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)

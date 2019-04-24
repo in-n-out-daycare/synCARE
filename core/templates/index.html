@@ -6,32 +6,38 @@
 {% if user.is_authenticated %}
 
     <div class="wrapper tc flex-ns flex-wrap justify-around">
-        {% for child in children %} 
-            {% if iscaregiver %}
+        {% if iscaregiver %}
+            {% for child in children %}
                 <div class="box">
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
-                
-                {{ child.full_name }}</a>
+
+                    {{ child.full_name }}</a>
+
                 {% if child.visit|length >= 1 %}
                     <div class="check-out"><a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton">Check out</button></a></div>
                 {% else %}
-                
                     <div class="check-in"><a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton">Check in</button></a></div>
                 {% endif %}  
                 </div> 
-            {% endif %}
+            {% endfor %}
+        {% endif %}
 
-        {% endfor %}
-
-    
+        {% if isguardian %}
+            {{ latest_visit.id }}
+            {% for child in children %}
+            <div>
+                <p>{{ child.full_name }} - {{ latest_visit.check_in|date:"M d Y" }}</p>
+                {% for activity in latest_visit.activities.all %}
+                <p>{{ activity }}</p>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        {% endif %}
     </div>
 
 {% else %}
-        <div class="welcome"><h4><a href="{% url 'account_login' %}">
+        <div class="welcome"><h4><a href="{% url 'account_login' %}"></h4>
 {% endif %}
-
-
-
 {% endblock %}
