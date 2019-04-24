@@ -35,7 +35,7 @@ def index(request):
 
     if is_guardian:
         children = Guardian.objects.get(user=request.user).children.all
-        return render(request, 'visit.html')
+        return render(request, 'index.html')
 
     context = {
         'children': children,
@@ -249,7 +249,7 @@ def notification(request, visit_id):
     current_time = timezone.now()
     timer = current_time - latest_change
 
-    # for change in changes:
+    # for change in changes: add in visit.activities by visit_id
     #     change_dict = {visit.child: timer}
 
     context = {
