@@ -10,13 +10,13 @@
             {% if iscaregiver %}
             <div class="subwrapper">
             <div class="buttonwrapper">
-                <div class="box">
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
-                
-                {{ child.full_name }}</a> 
-                </div> <br>
+                <div class="box">
+        
+                {{ child.full_name }}
+                </div></a>
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton">Check out</button></a>
                 {% else %}
