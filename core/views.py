@@ -9,6 +9,8 @@ from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 from .forms import CommentForm
 from django.contrib import messages
+from django.utils import timezone
+from django.http import JsonResponse
 
 
 def index(request):
@@ -175,7 +177,7 @@ def food(request, visit_id):
 
 def check_out(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
-    visit.check_out = datetime.datetime.now()
+    visit.check_out = timezone.now()
     naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     child = visit.child
@@ -220,7 +222,7 @@ def check_in(request, child_id):
 
 def nap_out(request, activity_id):
     nap = Activity.objects.get(id=activity_id)
-    nap.end_time = datetime.datetime.now()
+    nap.end_time = timezone.now()
     nap.save()
     messages.success(request, f"{nap.child} nap ended.")
 
@@ -238,3 +240,21 @@ def nap_in(request, visit_id):
     messages.success(request, f"{visit.child} nap started.")
 
     return redirect('index')
+
+
+def notification(request, visit_id):
+    children = Child.objects.all()
+    changes = list(Activity.objects.filter(activity_type=Activity.OUTPUT))
+    latest_change = changes[-1].start_time
+    current_time = timezone.now()
+    timer = current_time - latest_change
+
+    # for change in changes:
+    #     change_dict = {visit.child: timer}
+
+    context = {
+        'timer': timer,
+        'current_time': latest_change,
+    }           
+
+    return render(request, 'notification.html', context=context)
