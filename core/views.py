@@ -244,18 +244,29 @@ def nap_in(request, visit_id):
 
 
 def notification(request, visit_id):
-    children = Child.objects.all()
-    changes = list(Activity.objects.filter(activity_type=Activity.OUTPUT))
+    visit = get_object_or_404(Visit, id=visit_id)
+    changes = list(visit.activities.filter(activity_type=Activity.OUTPUT))
     latest_change = changes[-1].start_time
     current_time = timezone.now()
     timer = current_time - latest_change
+    change_list = []
+
+
+    if timer > datetime.timedelta(seconds=10):
+        message = 'It works!'
+        change_list.append(visit.child.child_id)
+
+    else:
+        message = 'Try again'
 
     # for change in changes: add in visit.activities by visit_id
     #     change_dict = {visit.child: timer}
 
     context = {
+        'change_list': change_list,
+
+        'message': message,
         'timer': timer,
-        'current_time': latest_change,
     }           
 
     return render(request, 'notification.html', context=context)
