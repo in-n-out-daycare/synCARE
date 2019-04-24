@@ -2,6 +2,8 @@
     font-family: 'Short Stack', cursive;
 }
 
+
+
 a, u {
     text-decoration: none;
 }
@@ -39,13 +41,14 @@ a, a:visited, a:hover, a:active {
     background-color: #ff583e;
     border: none;
     color: white;
-    margin: 20px;
-    padding: 30px;
+    margin: 15px;
+    padding: 25px;
+    width:15rem;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 24px;
     border-radius: 20px;
 }
     
@@ -78,12 +81,20 @@ a, a:visited, a:hover, a:active {
 
 .dropdownContent {
     display: none;
+
     justify-content: center;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: lightgray;
     width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border-radius: 30px;
+}
+
+.choicewrapper {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
 }
 
 .show {

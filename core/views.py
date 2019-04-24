@@ -100,7 +100,8 @@ def action_summary(request, visit_id):
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     context = {
-        'visit_id' : visit_id
+        'visit_id' : visit_id,
+        'visit': visit,
         }
     return render(request, 'in_list.html', context=context)
 

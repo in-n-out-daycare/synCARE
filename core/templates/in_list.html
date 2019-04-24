@@ -3,6 +3,14 @@
 {% block content %}
 <script src="/static/js/main.js"></script>
 
+
+    <h1 class="action_header">{{ visit.child }}</h1>
+
+
+
+    <h3>Food allergies: {{ visit.child.allergy }}</h3>
+
+
 <div class="wrapper">
    
     <div class="foodbox" ><button onclick="myBottleFunction()" class="dropButton">Bottle</button>
