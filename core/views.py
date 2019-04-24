@@ -102,7 +102,8 @@ def action_summary(request, visit_id):
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
     context = {
-        'visit_id' : visit_id
+        'visit_id' : visit_id,
+        'visit': visit,
         }
     return render(request, 'in_list.html', context=context)
 
@@ -226,7 +227,7 @@ def nap_out(request, activity_id):
     nap.save()
     messages.success(request, f"{nap.child} nap ended.")
 
-    return redirect('action_list', visit_id=nap.visit.id)
+    return redirect('index')
 
 
 def nap_in(request, visit_id):

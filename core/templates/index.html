@@ -5,17 +5,20 @@
 {% block content %}
 {% if user.is_authenticated %}
 
-    <div class="wrapper tc flex-ns flex-wrap justify-around">
+    <div class="wrapper">
         {% for child in children %} 
             {% if iscaregiver %}
-                <div class="box">
+            <div class="subwrapper">
+            <div class="buttonwrapper">
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
-                
-                {{ child.full_name }}</a>
+                <div class="box">
+        
+                {{ child.full_name }}
+                </div></a>
                 {% if child.visit|length >= 1 %}
-                    <div class="check-out"><a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton">Check out</button></a></div>
+                    <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check out</button></a>
                 {% else %}
                 
                     <div class="check-in"><a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton">Check in</button></a></div>
@@ -23,7 +26,9 @@
                 <div class='notification'>Change {{ child.visit.0.id }}</div>
                 </div> 
             {% endif %}
-
+            </div>
+            
+            
         {% endfor %}
 
     
