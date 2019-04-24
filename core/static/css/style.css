@@ -37,6 +37,15 @@ a, a:visited, a:hover, a:active {
     border-radius: 20px;
 }
 
+.in {
+    background-color:yellow;
+    color:black;
+}
+
+.out {
+    background-color:purple;
+}
+
 .choicebutton {
 
     background-color: #ff583e;
@@ -67,7 +76,7 @@ a, a:visited, a:hover, a:active {
     padding: 25px;
     padding-top: 12px;
     text-align: center;
-    background-color: rgb(227, 40, 15);
+    background-color: purple;
     font-size: 35px;
     font-weight: bold;
     text-decoration: none;
@@ -128,7 +137,7 @@ a, a:visited, a:hover, a:active {
     padding: 25px;
     padding-top: 45px;
     text-align: center;
-    background-color: rgb(227, 40, 15);
+    background-color: purple;
     font-size: 35px;
     font-weight: bold;
     text-decoration: none;

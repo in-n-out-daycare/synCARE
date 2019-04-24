@@ -18,10 +18,10 @@
                 {{ child.full_name }}
                 </div></a>
                 {% if child.visit|length >= 1 %}
-                    <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton">Check out</button></a>
+                    <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check out</button></a>
                 {% else %}
                 
-                    <a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton">Check in</button></a>
+                    <a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton in">Check in</button></a>
                 {% endif %} 
             </div>
             {% endif %}
