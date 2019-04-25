@@ -31,30 +31,32 @@
         {% endfor %}
 
         {% if isguardian %}
-        {% for visit in child_visits %}
-        <div>
-            <h3>{{ visit.child }} - {{ visit.check_in|date:"M d Y" }}</h3>
-            <p><strong>Teacher Comments:</strong></p>
-            <p>{{ visit.comment|linebreaks }}</p>
-            <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}</p>
-            {% for activity in visit.activities.all %}
-            {% if activity.activity_type == 'NP' %}
-            <p><strong>Nap:</strong> {{ activity.start_time|date:"h:i a"}}
-                - {{ activity.end_time|date:"h:i a" }}</p>
-            {% endif %}
-            {% if activity.activity_type == 'OT' %}
-            <p><strong>Diaper change:</strong> {{ activity.start_time|date:"h:i a" }}
-                | {{ activity.subtype_option }}</p>
-            {% endif %}
-            {% if activity.activity_type == 'IN' %}
-            <p><strong>Food:</strong> {{ activity.start_time|date:"h:i a" }}
-                | {{ activity.subtype_option }} {{activity.subtype}}</p>
-            {% endif %}
+        <div class="guardian_wrapper">
+            {% for visit in child_visits %}
+            <div class="guardian_kidbox">
+                <h3>{{ visit.child }} - {{ visit.check_in|date:"M d Y" }}</h3>
+                <p><strong>Teacher Comments:</strong></p>
+                <p>{{ visit.comment|linebreaks }}</p>
+                <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}</p>
+                {% for activity in visit.activities.all %}
+                {% if activity.activity_type == 'NP' %}
+                <p><strong>Nap:</strong> {{ activity.start_time|date:"h:i a"}}
+                    - {{ activity.end_time|date:"h:i a" }}</p>
+                {% endif %}
+                {% if activity.activity_type == 'OT' %}
+                <p><strong>Diaper change:</strong> {{ activity.start_time|date:"h:i a" }}
+                    | {{ activity.subtype_option }}</p>
+                {% endif %}
+                {% if activity.activity_type == 'IN' %}
+                <p><strong>Food:</strong> {{ activity.start_time|date:"h:i a" }}
+                    | {{ activity.subtype_option }} {{activity.subtype}}</p>
+                {% endif %}
+                {% endfor %}
+                <p><strong>Check Out:</strong> {{ visit.check_out|date:"h:i a" }}</p>
+            </div>
             {% endfor %}
-            <p><strong>Check Out:</strong> {{ visit.check_out|date:"h:i a" }}</p>
+            {% endif %}
         </div>
-        {% endfor %}
-        {% endif %}
     </div>
 
     {% else %}
