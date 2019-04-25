@@ -15,7 +15,7 @@
                 {% endif %}
                 <div class="box">
         
-                {{ child.full_name }}
+                {{ child.full_name }} <img src="static/pics/{{child.child_pic}}">
                 </div></a>
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check out</button></a>
