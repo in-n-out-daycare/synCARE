@@ -32,7 +32,7 @@ def index(request):
                     queryset=Visit.objects.filter(check_out__isnull=True, check_in__date__lte=datetime.date.today()),
                     to_attr="visit"
                 )
-            )
+            ).order_by('full_name')
         classroom = Classroom.objects.filter(caregiver=request.user)
 
     if is_guardian:
@@ -42,7 +42,7 @@ def index(request):
 
         context = {
             'child_visits': child_visits,
-            'children': children,
+            'children': children.order_by('full_name'),
             'isguardian': is_guardian,
             'iscaregiver': is_caregiver,
             'isadministrator': is_administrator,

@@ -23,4 +23,3 @@ class VisitAdmin(admin.ModelAdmin):
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
     pass
-
