@@ -13,7 +13,7 @@
                 {% if child.visit|length >= 1 %}
                     <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
-                <div class="box">
+                <div class="kidbox">
         
                 {{ child.full_name }} <br><img src="/static/pics/{{child.child_pic}}">
                 </div></a>

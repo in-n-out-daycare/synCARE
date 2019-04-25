@@ -6,6 +6,7 @@ img {
     width: 50px;
     height:50px;
     border-radius:100%;
+    
 }
 
 a, u {
@@ -140,6 +141,25 @@ a, a:visited, a:hover, a:active {
     margin: 40px 60px 5px 60px;
     padding: 25px;
     padding-top: 45px;
+    text-align: center;
+    background-color: purple;
+    font-size: 35px;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+.kidbox {
+    display: block;
+    justify-content: center;
+    width:200px;
+    height: 80px;
+    color: white;
+    
+    border-radius: 20px;
+    margin: 40px 60px 5px 60px;
+    padding: 25px;
+    padding-top: 30px;
     text-align: center;
     background-color: purple;
     font-size: 20px;
