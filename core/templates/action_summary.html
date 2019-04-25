@@ -18,10 +18,10 @@
     <p><strong>Nap:</strong> {{ nap.start_time|date:"h:i a" }} - {{ nap.end_time|date:"h:i a"}}</p>
 {% endfor %}
 {% for output in outputs %}
-    <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | Contents: #{{ output.subtype_option }}</p>
+    <p><strong>Diaper change:</strong> {{output.start_time|date:"h:i a" }} | {{ output.subtype_option }}</p>
 {% endfor%}
 {% for input in inputs %}
-    <p><strong>Feeding time:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype }}</p>
+    <p><strong>Food:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype_option }} {{ input.subtype }}</p>
 {% endfor %}
 
 {% comment %} <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a> {% endcomment %}

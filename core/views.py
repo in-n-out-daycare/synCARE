@@ -32,12 +32,11 @@ def index(request):
             )
 
     if is_guardian:
-        children = Child.objects.filter(guardians__user=request.user)
-        for child in children:
-            latest_visit = child.visits.latest('check_in')
+        children = Child.objects.filter(guardians__user=request.user, visits__check_in__date=datetime.date.today())
+        child_visits = Visit.objects.filter(child__guardians__user=request.user, check_in__date=datetime.date.today())
 
         context = {
-            'latest_visit': latest_visit,
+            'child_visits': child_visits,
             'children': children,
             'isguardian': is_guardian,
             'iscaregiver': is_caregiver,
@@ -107,25 +106,6 @@ def action_summary(request, visit_id):
     }
 
     return render(request, 'action_summary.html', context=context)
-
-def guardian_summary(request, visit_id):
-    visit = Visit.objects.get(id=visit_id)
-    comment = visit.comment
-    naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
-    outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
-    inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
-    child = visit.child
-
-    context = {
-        'naps': naps,
-        'visit': visit,
-        'child': child,
-        'visit_id': visit_id,
-        'outputs': outputs,
-        'inputs': inputs,
-    }
-
-    return render(request, 'guardian_summary.html', context=context)
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
