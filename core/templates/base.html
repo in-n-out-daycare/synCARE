@@ -13,26 +13,30 @@
         {% block meta %}{% endblock %}
         <title>{% block title %}WeeCare{% endblock %}</title>
     </head>
-
-   
         <div class="home">
-            <a href="{% url 'index' %}"><img src="/static/css/WeeCare_logo.png" style="width:100px;height:100px;"></a>
+            <a href="{% url 'index' %}"><img src="/static/css/WeeCare_logo.png" style="width:200px; height:auto"></a>
         </div>
-     </div>
         {% if user.is_authenticated %}
-        <div class="title_bar">
-            <div class="base_bar">
-                <div class="username">
-                    <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
-                </div>
-                {% else %}
-                <div class="login">
-                <h4><a href="{% url 'account_login' %}">Login</a> |
-                    <a href="{% url 'account_signup' %}">Register</a></h4>
+            {% if iscaregiver is not True %}
+            <div class="tag_line">
+                <p> Monitor little ones from check in to check out</p>
             </div>
-        </div>
+           {% else %}
+            <div class="base_bar">
+                <p> Start tracking activities with a click of a button!</p>
+            </div>
+            {% endif %}
+            <div class="username">
+                <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
+            </div>
+            <div class="login">
+                <h4><a href="{% url 'account_login' %}">Login</a> |
+                <a href="{% url 'account_signup' %}">Register</a></h4>
+            
+            </div>
+     
         {% endif %}
-    </div>
+   
 
     <div class="messages_box">
     {% if messages %}

@@ -1,8 +1,13 @@
 * {
     font-family: 'Short Stack', cursive;
+    
 }
 
-
+.tag_line {
+    font-size: 25px;
+    font-style: italic; 
+    text-align: center;
+}
 
 a, u {
     text-decoration: none;
@@ -149,31 +154,35 @@ a, a:visited, a:hover, a:active {
     color:white;
     transition: all .3s ease;
 }
-
+/* 
 .header {
     border-style: ridge;
     border-color: black;
     border-radius: 30px;
     margin: 15px;
 
-}
+} */
 
 .title_bar {
-    text-align: center;
-    padding: 2px;
-    vertical-align: middle;
+    /* text-align: center; */
+    /* padding: 2px; */
+    /* vertical-align: middle; */
 }
 
 .home {
     text-align: center;
-    /* margin-top: 2px; */
+    /* font-size: 50px */
+    margin: 0;
     /* padding-top: 2px; */
 }
 
 .base_bar {
     background-color: #96E9F9;
-    width: 100%; height: 40px;
-    margin-bottom: 15px;
+    width: 100%; height: 60px;
+    margin-bottom: 35px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
 }
 
 .login {

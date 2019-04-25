@@ -33,7 +33,7 @@ def index(request):
 
     if is_guardian:
         children = Guardian.objects.get(user=request.user).children.all
-        return render(request, 'visit.html')
+        return render(request, 'index.html')
 
     context = {
         'children': children,
