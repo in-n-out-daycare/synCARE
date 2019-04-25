@@ -235,7 +235,7 @@ def nap_out(request, activity_id):
     nap.save()
     messages.success(request, f"{nap.child} nap ended.")
 
-    return redirect('action_list', visit_id=nap.visit.id)
+    return redirect('index')
 
 
 def nap_in(request, visit_id):
