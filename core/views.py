@@ -32,8 +32,18 @@ def index(request):
             )
 
     if is_guardian:
-        children = Guardian.objects.get(user=request.user).children.all
-        return render(request, 'visit.html')
+        children = Child.objects.filter(guardians__user=request.user, visits__check_in__date=datetime.date.today())
+        child_visits = Visit.objects.filter(child__guardians__user=request.user, check_in__date=datetime.date.today())
+
+        context = {
+            'child_visits': child_visits,
+            'children': children,
+            'isguardian': is_guardian,
+            'iscaregiver': is_caregiver,
+            'isadministrator': is_administrator,
+        }
+
+        return render(request, 'index.html', context=context)
 
     context = {
         'children': children,
@@ -41,6 +51,7 @@ def index(request):
         'iscaregiver': is_caregiver,
         'isadministrator': is_administrator,
     }
+
     return render(request, 'index.html', context=context)
 
 
@@ -71,7 +82,7 @@ def action_summary(request, visit_id):
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            if visit.comment == None:
+            if visit.comment is None:
                 visit.comment = " - " + form.cleaned_data['comment']
             else:
                 visit.comment += "\n - " + (form.cleaned_data['comment'])
@@ -95,7 +106,6 @@ def action_summary(request, visit_id):
     }
 
     return render(request, 'action_summary.html', context=context)
-
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)

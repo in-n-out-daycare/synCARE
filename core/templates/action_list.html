@@ -24,9 +24,9 @@
         <div id="diaperChoices" class="dropdownContent">
             <form id="diaper_form" method="POST" action="{% url 'diaper' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
-                <button class="choicebutton" name="diaper_choice" value="Diaper0"> Dry </button>
-                <button class="choicebutton" name="diaper_choice" value="Diaper1"> Wet </button>
-                <button class="choicebutton" name="diaper_choice" value="Diaper2"> Dirty </button>
+                <button class="choicebutton" name="diaper_choice" value="Dry"> Dry </button>
+                <button class="choicebutton" name="diaper_choice" value="Wet"> Wet </button>
+                <button class="choicebutton" name="diaper_choice" value="Dirty"> Dirty </button>
                 </div>    
             </form>
         </div>
