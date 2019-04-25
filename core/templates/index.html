@@ -9,7 +9,7 @@
     {% for child in children %}
     {% if iscaregiver %}
     <div class="subwrapper">
-        <div class="buttonwrapper">
+        
             {% if child.visit|length >= 1 %}
             <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
                 {% endif %}
@@ -23,13 +23,15 @@
             <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check
                     out</button></a>
             {% else %}
-            <div class="check-in"><a href="{% url 'check_in' child_id=child.child_id %}"><button
-                        class="checkbutton">Check in</button></a></div>
+            <a href="{% url 'check_in' child_id=child.child_id %}"><button
+                        class="checkbutton in">Check in</button></a>
+                        
             {% endif %}
-        </div>
+        
         {% endif %}
+        </div>
         {% endfor %}
-
+        </div>
         {% if isguardian %}
         <div class="guardian_wrapper">
             {% for visit in child_visits %}
@@ -64,3 +66,4 @@
         <h4><a href="{% url 'account_login' %}"></h4>
         {% endif %}
         {% endblock %}
+    </div>
