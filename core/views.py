@@ -44,7 +44,7 @@ def index(request):
 
         context = {
             'child_visits': child_visits,
-            'children': children.order_by('full_name'),
+            'children': children,
             'isguardian': is_guardian,
             'iscaregiver': is_caregiver,
             'isadministrator': is_administrator,
@@ -260,14 +260,18 @@ def nap_in(request, visit_id):
     return redirect('index')
 
 
-def notification(request, visit_id):
-    visit = get_object_or_404(Visit, id=visit_id)
+def notification(request):
+    visit = Visit.objects.filter(check_in__date=timezone.now())
     changes = list(visit.activities.filter(activity_type=Activity.OUTPUT))
-    latest_change = changes[-1].start_time
+
+    if changes == []:
+        latest_change = timezone.now()
+    else:
+        latest_change = changes[-1].start_time
+
     current_time = timezone.now()
     timer = current_time - latest_change
     change_list = []
-
 
     if timer > datetime.timedelta(seconds=10):
         message = 'It works!'
@@ -276,12 +280,8 @@ def notification(request, visit_id):
     else:
         message = 'Try again'
 
-    # for change in changes: add in visit.activities by visit_id
-    #     change_dict = {visit.child: timer}
-
     context = {
         'change_list': change_list,
-
         'message': message,
         'timer': timer,
     }           
