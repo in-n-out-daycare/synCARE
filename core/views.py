@@ -231,7 +231,7 @@ def check_in(request, child_id):
         child=child
     )
     visit.save()
-    messages.success(request, f"{visit.child} checked in!")
+    messages.success(request, f"{visit.child} checked in! Enjoy your day!")
 
     return redirect('index')
 
