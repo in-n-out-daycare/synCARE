@@ -13,12 +13,15 @@ from django.utils import timezone
 from django.http import JsonResponse
 
 
+
+# def base
 def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
     is_caregiver = request.user.groups.filter(name='caregiver').exists()
     is_guardian = request.user.groups.filter(name='guardian').exists()
     children = ()
+    classroom = ()
 
     if is_administrator:
         children = Child.objects.all()
@@ -32,17 +35,32 @@ def index(request):
                     to_attr="visit"
                 )
             )
+        classroom = Classroom.objects.filter(caregiver=request.user)
 
     if is_guardian:
-        children = Guardian.objects.get(user=request.user).children.all
-        return render(request, 'index.html')
+
+        children = Child.objects.filter(guardians__user=request.user, visits__check_in__date=datetime.date.today())
+        child_visits = Visit.objects.filter(child__guardians__user=request.user, check_in__date=datetime.date.today())
+
+        context = {
+            'child_visits': child_visits,
+            'children': children,
+            'isguardian': is_guardian,
+            'iscaregiver': is_caregiver,
+            'isadministrator': is_administrator,
+        }
+
+        return render(request, 'index.html', context=context)
+
 
     context = {
         'children': children,
         'isguardian': is_guardian,
         'iscaregiver': is_caregiver,
         'isadministrator': is_administrator,
+        'classrooms' : classroom,
     }
+
     return render(request, 'index.html', context=context)
 
 
@@ -55,7 +73,7 @@ def action_list(request, visit_id):
         'visit': visit,
         'child': visit.child,
         'visit_id': visit_id,
-        'open_nap':nap,
+        'open_nap': nap,
     }
     return render(request, 'action_list.html', context=context)
 
@@ -73,7 +91,7 @@ def action_summary(request, visit_id):
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            if visit.comment == None:
+            if visit.comment is None:
                 visit.comment = " - " + form.cleaned_data['comment']
             else:
                 visit.comment += "\n - " + (form.cleaned_data['comment'])
@@ -97,7 +115,6 @@ def action_summary(request, visit_id):
     }
 
     return render(request, 'action_summary.html', context=context)
-
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
@@ -186,9 +203,9 @@ def check_out(request, visit_id):
     inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     comment = visit.comment
 
-    subject="Input//Output Daily Summary"
+    subject="WeeCare Daily Summary"
     to = [guardian.user.email for guardian in guardians]
-    from_email = 'input_output@io.com'
+    from_email = 'weecare@io.com'
 
     context = {
     'naps': naps,

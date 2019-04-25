@@ -1,14 +1,27 @@
 * {
     font-family: 'Short Stack', cursive;
+    
 }
 
+.kidbox img {
+    width: 60px;
+    height:60px;
+    border-radius:100%;
+    
+}
 
+.tag_line {
+    font-size: 25px;
+    font-style: italic; 
+    text-align: center;
+    padding-bottom: 20px
+}
 
 a, u {
     text-decoration: none;
 }
 
-form {
+.comment_form {
     border-bottom: 1px dotted black;
     padding-bottom: 1rem;
 }
@@ -18,8 +31,8 @@ a, a:visited, a:hover, a:active {
 }
 
 .wrapper {
-    
-
+    display:flex;
+    flex-wrap:wrap;
     border-radius: 7px;
     justify-content: center;
 }
@@ -126,9 +139,10 @@ a, a:visited, a:hover, a:active {
 }
   
 .subwrapper {
-    display: flex;
-    justify-content:center;
+    text-align:center;
 }
+
+
 
 .box {
     display: block;
@@ -149,48 +163,63 @@ a, a:visited, a:hover, a:active {
 
 }
 
+.kidbox {
+    display: block;
+    justify-content: center;
+    width:200px;
+    height: 80px;
+    color: white;
+    
+    border-radius: 20px;
+    margin: 40px 60px 5px 60px;
+    padding: 25px;
+    padding-top: 15px;
+    padding-bottom: 40px;
+    text-align: center;
+    background-color: purple;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
 .box:hover {
     background-color: #f99d02;
     color:white;
     transition: all .3s ease;
 }
 
-.header {
-    border-style: ridge;
-    border-color: black;
-    border-radius: 30px;
-    margin: 15px;
-
-}
-
-.title_bar {
-    text-align: center;
-    padding: 2px;
-    vertical-align: middle;
-}
 
 .home {
     text-align: center;
-    /* margin-top: 2px; */
-    /* padding-top: 2px; */
+    margin: 0;
+    padding-top: 20px;
 }
 
 .base_bar {
-    background-color: #96E9F9;
-    width: 100%; height: 40px;
-    margin-bottom: 15px;
+    background-color: #3C84CF;
+    font-size: 20px;
+    color: white;
+    width: 100%; height: 60px;
+    margin-bottom: 35px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: bottom;
+    margin: 0;
 }
 
 .login {
-   text-align: flex none;
-    font-size: 25px;
+   text-align: center;
+    font-size: 15px;
     color: black;
+    margin: 0;
 }
 
 .username {
-    text-align: flex none;
-    font-size: 25px;
-    color: white;
+    text-align: center;
+    font-size: 15px;
+    color: black;
+    margin: 0;
 }
 
 .action_header {
@@ -208,11 +237,28 @@ a, a:visited, a:hover, a:active {
     font-size: 18px;
 }
 
+.guardian_kidbox {
+    text-align: left;
+    border-bottom: 2px black solid;
+}
 
 @media screen and (min-width: 768px) {
     .wrapper {
         display: flex;
         flex-wrap: wrap;
     }
-}
 
+    .guardian_kidbox {
+        width: 40%;
+        border: 1px black solid;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .guardian_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+}
