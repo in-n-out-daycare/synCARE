@@ -261,28 +261,25 @@ def nap_in(request, visit_id):
 
 
 def notification(request):
-    visit = Visit.objects.filter(check_in__date=timezone.now())
-    changes = list(visit.activities.filter(activity_type=Activity.OUTPUT))
+    children = Child.objects.filter(visits__check_out__isnull=True)
 
-    if changes == []:
-        latest_change = timezone.now()
-    else:
-        latest_change = changes[-1].start_time
-
-    current_time = timezone.now()
-    timer = current_time - latest_change
     change_list = []
 
-    if timer > datetime.timedelta(seconds=10):
-        message = 'It works!'
-        change_list.append(visit.child.child_id)
+    for child in children:
+        activities = Activity.objects.filter(visit__check_in__date=timezone.now())
+        outputs = list(activities.filter(activity_type=Activity.OUTPUT))
+        if outputs == []:
+            latest_output = Visit.objects.filter(child__check_out__isnull=True)
+            timer = timezone.now() - latest_output
+        else:
+            latest_output = outputs[-1]
+            timer = timezone.now() - latest_output.start_time
 
-    else:
-        message = 'Try again'
+        if timer > datetime.timedelta(seconds=10):
+            change_list.append((latest_output.child, latest_output.child.child_id))
 
     context = {
         'change_list': change_list,
-        'message': message,
         'timer': timer,
     }           
 
