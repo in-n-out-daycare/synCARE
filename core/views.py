@@ -201,9 +201,9 @@ def check_out(request, visit_id):
     inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     comment = visit.comment
 
-    subject="Input//Output Daily Summary"
+    subject="WeeCare Daily Summary"
     to = [guardian.user.email for guardian in guardians]
-    from_email = 'input_output@io.com'
+    from_email = 'weecare@io.com'
 
     context = {
     'naps': naps,
