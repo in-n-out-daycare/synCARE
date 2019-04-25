@@ -12,6 +12,7 @@ from django.contrib import messages
 
 
 
+# def base
 def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
@@ -52,14 +53,12 @@ def action_list(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
     activity = visit.activities
     nap = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP, end_time__isnull=True)
-    classroom = ()
     context = {
         'activity': activity,
         'visit': visit,
         'child': visit.child,
         'visit_id': visit_id,
         'open_nap': nap,
-        'classrooms': classroom, 
     }
     return render(request, 'action_list.html', context=context)
 
@@ -105,11 +104,9 @@ def action_summary(request, visit_id):
 
 def in_list(request, visit_id):
     visit = get_object_or_404(Visit, id=visit_id)
-    classroom = ()
     context = {
         'visit_id' : visit_id,
         'visit': visit,
-        'classrooms': classroom,
         }
     return render(request, 'in_list.html', context=context)
 
