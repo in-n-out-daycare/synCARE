@@ -19,6 +19,14 @@
     padding-bottom: 20px
 }
 
+.allergy {
+  color: #CB280F;
+  font-style: italic;
+  /* font-size: 20px;
+  font-weight: 900; */
+  text-align: center;
+}
+
 a, u {
     text-decoration: none;
 }
