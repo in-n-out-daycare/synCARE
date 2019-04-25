@@ -20,12 +20,12 @@
         
         {% if user.is_authenticated %}
             <div class="username">
-                <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
+                <h4><button class="log_register"><a href="{% url 'account_logout' %}">Logout</a></button></h4>
             </div>
         {% else %}
             <div class="login">
-                <h4><a href="{% url 'account_login' %}">Login</a> |
-                <a href="{% url 'account_signup' %}">Register</a></h4>
+                <h4><button class="log_register"><a href="{% url 'account_login' %}">Login</button></a> 
+                <button class="log_register"><a href="{% url 'account_signup' %}">Register</a></button></h4>
             </div>
         {% if user.is_authenticated and not iscaregiver %}
             <div class="tag_line">
