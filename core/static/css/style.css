@@ -14,7 +14,7 @@ a, u {
     text-decoration: none;
 }
 
-form {
+.comment_form {
     border-bottom: 1px dotted black;
     padding-bottom: 1rem;
 }
@@ -193,10 +193,6 @@ a, a:visited, a:hover, a:active {
     margin: 0;
 }
 
-/* .base_child {
-    display: inline-block;
-} */
-
 .login {
    text-align: center;
     font-size: 15px;
@@ -226,11 +222,28 @@ a, a:visited, a:hover, a:active {
     font-size: 18px;
 }
 
+.guardian_kidbox {
+    text-align: left;
+    border-bottom: 2px black solid;
+}
 
 @media screen and (min-width: 768px) {
     .wrapper {
         display: flex;
         flex-wrap: wrap;
     }
-}
 
+    .guardian_kidbox {
+        width: 40%;
+        border: 1px black solid;
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .guardian_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+}
