@@ -14,29 +14,39 @@
         <title>{% block title %}WeeCare{% endblock %}</title>
     </head>
         <div class="home">
-            <a href="{% url 'index' %}"><img src="/static/css/WeeCare_logo.png" style="width:200px; height:auto"></a>
+            <a href="{% url 'index' %}"><img src="/static/css/WeeCare_logo.png" style="width:300px; height:auto"></a>
         </div>
+       
+        
         {% if user.is_authenticated %}
-            {% if iscaregiver is not True %}
-            <div class="tag_line">
-                <p> Monitor little ones from check in to check out</p>
-            </div>
-           {% else %}
-            <div class="base_bar">
-                <p> Start tracking activities with a click of a button!</p>
-            </div>
-            {% endif %}
             <div class="username">
                 <h4><a href="{% url 'account_logout' %}">Logout</a></h4>
             </div>
+        {% else %}
             <div class="login">
                 <h4><a href="{% url 'account_login' %}">Login</a> |
                 <a href="{% url 'account_signup' %}">Register</a></h4>
-            
             </div>
-     
+        {% if user.is_authenticated and not iscaregiver %}
+            <div class="tag_line">
+                <p> " Monitor little ones from check in to check out "</p>
+            </div>
+        {% endif %}
+
+           
         {% endif %}
    
+        <div class="base_bar">
+            {% comment %} <div class="base_sub"> {% endcomment %}
+
+                {% if user.is_authenticated and iscaregiver %}
+                {% for classroom in classrooms %} 
+                <p> {{ classroom.classroom }} Classroom </p>
+                {% endfor%}
+                {% endif %}
+                
+            {% comment %} </div> {% endcomment %}
+        </div>
 
     <div class="messages_box">
     {% if messages %}
