@@ -11,12 +11,15 @@ from .forms import CommentForm
 from django.contrib import messages
 
 
+
+# def base
 def index(request):
 
     is_administrator = request.user.groups.filter(name='administrator').exists()
     is_caregiver = request.user.groups.filter(name='caregiver').exists()
     is_guardian = request.user.groups.filter(name='guardian').exists()
     children = ()
+    classroom = ()
 
     if is_administrator:
         children = Child.objects.all()
@@ -30,8 +33,10 @@ def index(request):
                     to_attr="visit"
                 )
             )
+        classroom = Classroom.objects.filter(caregiver=request.user)
 
     if is_guardian:
+
         children = Child.objects.filter(guardians__user=request.user, visits__check_in__date=datetime.date.today())
         child_visits = Visit.objects.filter(child__guardians__user=request.user, check_in__date=datetime.date.today())
 
@@ -45,11 +50,13 @@ def index(request):
 
         return render(request, 'index.html', context=context)
 
+
     context = {
         'children': children,
         'isguardian': is_guardian,
         'iscaregiver': is_caregiver,
         'isadministrator': is_administrator,
+        'classrooms' : classroom,
     }
 
     return render(request, 'index.html', context=context)
@@ -64,7 +71,7 @@ def action_list(request, visit_id):
         'visit': visit,
         'child': visit.child,
         'visit_id': visit_id,
-        'open_nap':nap,
+        'open_nap': nap,
     }
     return render(request, 'action_list.html', context=context)
 
