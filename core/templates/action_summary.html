@@ -7,8 +7,10 @@
 <form class="comment_form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit" class='checkbutton'>
+    <p>Put any teacher comments here (i.e. Need more diapers.)</p>
+    <input type="submit" value="Submit" class="checkbutton" style="background-color:purple;">
 </form>
+<p>
 
 <p><strong>Comments:</strong>{{ comment|linebreaks }}</p>
 
