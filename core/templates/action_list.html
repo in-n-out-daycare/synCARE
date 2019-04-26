@@ -2,14 +2,14 @@
 
 {% block content %}
 <script src="/static/js/main.js"></script>
-
+<a name="anchor"></a>
 <div class="action_header">
     <h1>{{ child }}</h1>
 </div>
 
 <div class="wrapper">
     <div class="subwrapper">
-    <a href="{% url 'in_list' visit_id=visit_id %}"><div class="box">Feeding</div></a>
+    <a href="{% url 'in_list' visit_id=visit_id %}#anchor"><div class="box">Feeding</div></a>
     </div>
     <div class="subwrapper">
     {% if open_nap|length >= 1 %}

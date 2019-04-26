@@ -11,7 +11,7 @@
     {% if iscaregiver %}
     <div class="subwrapper">
         {% if child.visit|length >= 1 %}
-        <a href="{% url 'action_list' visit_id=child.visit.0.id %}">
+        <a href="{% url 'action_list' visit_id=child.visit.0.id %}#anchor">
             {% endif %}
             <div class="kidbox">
                 <div class="notification" id="{{ child.child_id }}"><i class="fas fa-baby"></i></div>
