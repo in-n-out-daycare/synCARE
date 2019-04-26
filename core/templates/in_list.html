@@ -2,12 +2,12 @@
 
 {% block content %}
 
-
+<a name="anchor"></a>
     <h1 class="action_header">{{ visit.child }}</h1>
 
 
 
-    <h3 class="allergy"><stronger>Food allergies: {{ visit.child.allergy }}</stronger></h3>
+    <h3 class="allergy">Food allergies: <strong style="text-transform:uppercase; font-size:24px;">{{ visit.child.allergy }}</strong></h3>
 
 
 <div class="wrapper">
@@ -18,9 +18,9 @@
             <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
                 <button class="choicebutton" name="bottle_choice" value="All">All</button>
-                <button class="choicebutton" name="bottle_choice" value="1oz">1 oz</button>
-                <button class="choicebutton" name="bottle_choice" value="2oz">2 oz</button>
-                <button class="choicebutton" name="bottle_choice" value="3oz">3 oz</button>
+                <button class="choicebutton" name="bottle_choice" value="3oz">Left 1 oz</button>
+                <button class="choicebutton" name="bottle_choice" value="2oz">Left 2 oz</button>
+                <button class="choicebutton" name="bottle_choice" value="1oz">Left 3 oz</button>
                 </div>
             </form>
         </div>

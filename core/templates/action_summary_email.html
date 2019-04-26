@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 {% block content %}
 
-<h1>Daily Summary - {{child}}</h1>
+<h1>Daily Summary for {{child}}</h1><br>
+
+<img src="/static/css/WeeCare_logo.png" style="width:100px; height:auto"><br>
+
 <h3>{{ visit.check_in|date:"D d M Y" }}</h3>
+
+<p><strong>Comments: {{ comment|linebreaks }}</strong></p>
 
 <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}
 
@@ -15,8 +20,6 @@
 {% for output in outputs %}
     <p><strong>Diaper change time:</strong> {{output.start_time|date:"h:i a" }} | {{ output.subtype_option }}</p>
 {% endfor%}
-
-<p><strong>Comments: {{ comment|linebreaks }}</strong></p>
 
 <p><strong>Check Out:</strong> {{ visit.check_out|date:"h:i a"}}
 
