@@ -17,7 +17,7 @@ function getNotification (notificationUrl) {
       for (let notification of Object.values(notificationData)) {
         for (let child of notification) {
           childDiv = document.getElementById(`${child}`)
-          childDiv.classList.toggle('show')
+          childDiv.classList.add('show')
         }
       }
     })
