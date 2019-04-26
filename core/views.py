@@ -9,6 +9,8 @@ from django.views.decorators.http import require_http_methods
 from .models import Child, Activity, Guardian, Classroom, Visit
 from .forms import CommentForm
 from django.contrib import messages
+from django.utils import timezone
+from django.http import JsonResponse
 
 
 
@@ -42,7 +44,7 @@ def index(request):
 
         context = {
             'child_visits': child_visits,
-            'children': children.order_by('full_name'),
+            'children': children,
             'isguardian': is_guardian,
             'iscaregiver': is_caregiver,
             'isadministrator': is_administrator,
@@ -193,7 +195,7 @@ def food(request, visit_id):
 
 def check_out(request, visit_id):
     visit = Visit.objects.get(id=visit_id)
-    visit.check_out = datetime.datetime.now()
+    visit.check_out = timezone.now()
     naps = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.NAP)
     outputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.OUTPUT)
     child = visit.child
@@ -238,7 +240,7 @@ def check_in(request, child_id):
 
 def nap_out(request, activity_id):
     nap = Activity.objects.get(id=activity_id)
-    nap.end_time = datetime.datetime.now()
+    nap.end_time = timezone.now()
     nap.save()
     messages.success(request, f"{nap.child} nap ended.")
 
@@ -256,3 +258,29 @@ def nap_in(request, visit_id):
     messages.success(request, f"{visit.child} nap started.")
 
     return redirect('index')
+
+
+def notification(request):
+    visits = Visit.objects.filter(check_out__isnull=True)
+    change_list = []
+    
+    for visit in visits:
+        if visit.child in Child.objects.filter(classroom__caregiver=request.user):
+            activities = visit.activities
+            outputs = list(activities.filter(activity_type=Activity.OUTPUT))
+
+            if outputs == []:
+                latest_output = visit
+                timer = timezone.now() - latest_output.check_in
+            else:
+                latest_output = outputs[-1]
+                timer = timezone.now() - latest_output.start_time
+
+            if timer > datetime.timedelta(seconds=10):
+                change_list.append(latest_output.child.child_id)
+
+    context = {
+        'change_list': change_list,
+    }           
+
+    return JsonResponse(context)

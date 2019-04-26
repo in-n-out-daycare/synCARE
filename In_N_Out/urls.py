@@ -38,6 +38,7 @@ urlpatterns = [
     path('visit/nap_out/<int:activity_id>/', views.nap_out, name='nap_out'),
     # allauth registration
     path('accounts/', include('allauth.urls')),
+    path('home/notification/', views.notification, name='notification')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

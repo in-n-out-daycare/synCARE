@@ -143,6 +143,12 @@ a, a:visited, a:hover, a:active {
     flex-wrap:wrap;
 }
 
+.notification {
+    display: none;
+    color:white;
+    position: absolute;
+}
+
 .show {
     display:block;
 }
@@ -159,7 +165,6 @@ a, a:visited, a:hover, a:active {
     width:200px;
     height: 80px;
     color: white;
-    
     border-radius: 20px;
     margin: 40px 60px 5px 60px;
     padding: 25px;
@@ -197,7 +202,6 @@ a, a:visited, a:hover, a:active {
     color:white;
     transition: all .3s ease;
 }
-
 
 .home {
     text-align: center;
