@@ -12,11 +12,23 @@
     
 }
 
+.log_register:hover {
+    box-shadow: 0 12px 16px 0 rgba(44,103,181,0.24), 0 17px 50px 0 rgba(44,103,181,0.19);
+}
+
 .tag_line {
     font-size: 25px;
     font-style: italic; 
     text-align: center;
     padding-bottom: 20px
+}
+
+.allergy {
+  color: #CB280F;
+  font-style: italic;
+  /* font-size: 20px;
+  font-weight: 900; */
+  text-align: center;
 }
 
 a, u {
