@@ -276,7 +276,7 @@ def notification(request):
                 latest_output = outputs[-1]
                 timer = timezone.now() - latest_output.start_time
 
-            if timer > datetime.timedelta(seconds=10):
+            if timer > datetime.timedelta(minutes=120):
                 change_list.append(latest_output.child.child_id)
 
     context = {

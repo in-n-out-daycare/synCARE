@@ -106,5 +106,5 @@ window.onclick = function (event) {
 document.addEventListener('DOMContentLoaded', function () {
   setInterval(function () {
     getNotification(notificationUrl)
-  }, 1000)
+  }, 3000000)
 })
