@@ -1,7 +1,30 @@
-const notificationUrl = '/home/notification/'
+const changeNotificationUrl = '/home/change_notification/'
+const feedNotificationUrl = '/home/feed_notification/'
 
-function getNotificationData (notificationUrl) {
-  let promise = fetch(notificationUrl).then(function (response) {
+function getChangeNotification (changeNotificationUrl) {
+  let promise = fetch(changeNotificationUrl).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  return promise
+}
+
+function getChangeNotificationData (changeNotificationUrl) {
+  getChangeNotification(changeNotificationUrl)
+    .then(notificationData => {
+      for (let notification of Object.values(notificationData)) {
+        for (let child of notification) {
+          childDiv = document.getElementById(`${child}`)
+          childDiv.classList.add('show')
+        }
+      }
+    })
+}
+
+function getFeedNotification (feedNotificationUrl) {
+  let promise = fetch(feedNotificationUrl).then(function (response) {
     if (!response.ok) {
       throw Error(response.statusText)
     }
@@ -11,13 +34,13 @@ function getNotificationData (notificationUrl) {
   return promise
 }
 
-function getNotification (notificationUrl) {
-  getNotificationData(notificationUrl)
-    .then(notificationData => {
-      for (let notification of Object.values(notificationData)) {
+function getFeedNotificationData (feedNotificationUrl) {
+  getFeedNotification(feedNotificationUrl)
+    .then(feedNotificationData => {
+      for (let notification of Object.values(feedNotificationData)) {
         for (let child of notification) {
-          childDiv = document.getElementById(`${child}`)
-          childDiv.classList.add('show')
+          feedChildDiv = document.getElementById(`feed_${child}`)
+          feedChildDiv.classList.add('show')
         }
       }
     })
@@ -105,6 +128,9 @@ window.onclick = function (event) {
 
 document.addEventListener('DOMContentLoaded', function () {
   setInterval(function () {
-    getNotification(notificationUrl)
-  }, 3000000)
+    getChangeNotificationData(changeNotificationUrl)
+  }, 1000)
+  setInterval(function () {
+    getFeedNotificationData(feedNotificationUrl)
+  }, 1000)
 })

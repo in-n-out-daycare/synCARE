@@ -260,7 +260,7 @@ def nap_in(request, visit_id):
     return redirect('index')
 
 
-def notification(request):
+def change_notification(request):
     visits = Visit.objects.filter(check_out__isnull=True)
     change_list = []
     
@@ -271,16 +271,43 @@ def notification(request):
 
             if outputs == []:
                 latest_output = visit
-                timer = timezone.now() - latest_output.check_in
+                change_timer = timezone.now() - latest_output.check_in
+
             else:
                 latest_output = outputs[-1]
-                timer = timezone.now() - latest_output.start_time
+                change_timer = timezone.now() - latest_output.start_time
 
-            if timer > datetime.timedelta(minutes=120):
+            if change_timer > datetime.timedelta(seconds=15):
                 change_list.append(latest_output.child.child_id)
 
     context = {
         'change_list': change_list,
     }           
+
+    return JsonResponse(context)
+
+def feed_notification(request):
+    visits = Visit.objects.filter(check_out__isnull=True)
+    feed_list = []
+
+    for visit in visits:
+        if visit.child in Child.objects.filter(classroom__caregiver=request.user):
+            activities = visit.activities
+            inputs = list(activities.filter(activity_type=Activity.INPUT))
+
+            if inputs == []:
+                latest_input = visit
+                feed_timer = timezone.now() - latest_input.check_in
+
+            else:
+                latest_input = inputs[-1]
+                feed_timer = timezone.now() - latest_input.start_time
+
+            if feed_timer > datetime.timedelta(seconds=15):
+                feed_list.append(latest_input.child.child_id)
+
+    context = {
+        'feed_list': feed_list,
+    }
 
     return JsonResponse(context)
