@@ -7,6 +7,7 @@ function getNotificationData (notificationUrl) {
     }
     return response.json()
   })
+  console.log(promise)
   return promise
 }
 

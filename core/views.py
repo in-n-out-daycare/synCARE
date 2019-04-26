@@ -265,18 +265,19 @@ def notification(request):
     change_list = []
     
     for visit in visits:
-        activities = visit.activities
-        outputs = list(activities.filter(activity_type=Activity.OUTPUT))
+        if visit.child in Child.objects.filter(classroom__caregiver=request.user):
+            activities = visit.activities
+            outputs = list(activities.filter(activity_type=Activity.OUTPUT))
 
-        if outputs == []:
-            latest_output = visit
-            timer = timezone.now() - latest_output.check_in
-        else:
-            latest_output = outputs[-1]
-            timer = timezone.now() - latest_output.start_time
+            if outputs == []:
+                latest_output = visit
+                timer = timezone.now() - latest_output.check_in
+            else:
+                latest_output = outputs[-1]
+                timer = timezone.now() - latest_output.start_time
 
-        if timer > datetime.timedelta(seconds=10):
-            change_list.append(latest_output.child.child_id)
+            if timer > datetime.timedelta(seconds=10):
+                change_list.append(latest_output.child.child_id)
 
     context = {
         'change_list': change_list,
