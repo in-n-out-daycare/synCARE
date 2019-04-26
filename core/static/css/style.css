@@ -149,6 +149,13 @@ a, a:visited, a:hover, a:active {
     position: absolute;
 }
 
+.feed_notification {
+    display: none;
+    color: white;
+    position: absolute;
+}
+
+
 .show {
     display:block;
 }
