@@ -1,3 +1,27 @@
+const notificationUrl = '/home/notification/'
+
+function getNotificationData (notificationUrl) {
+  let promise = fetch(notificationUrl).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  return promise
+}
+
+function getNotification (notificationUrl) {
+  getNotificationData(notificationUrl)
+    .then(notificationData => {
+      for (let notification of Object.values(notificationData)) {
+        for (let child of notification) {
+          childDiv = document.getElementById(`${child}`)
+          childDiv.classList.toggle('show')
+        }
+      }
+    })
+}
+
 function validateBottleForm () {
   const radios = document.getElementsByName('bottle_choice')
   let formValid = false
@@ -77,3 +101,9 @@ window.onclick = function (event) {
     }
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  setInterval(function () {
+    getNotification(notificationUrl)
+  }, 1000)
+})

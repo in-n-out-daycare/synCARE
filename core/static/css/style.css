@@ -132,8 +132,9 @@ a, a:visited, a:hover, a:active {
 }
 
 .notification {
-    /* display: none; */
-    color:black;
+    display: none;
+    color:white;
+    position: absolute;
 }
 
 .show {
@@ -190,7 +191,6 @@ a, a:visited, a:hover, a:active {
     color:white;
     transition: all .3s ease;
 }
-
 
 .home {
     text-align: center;
