@@ -192,8 +192,8 @@ a, a:visited, a:hover, a:active {
     color: white;
     
     border-radius: 20px;
-    margin: 40px 60px 5px 60px;
-    padding: 25px;
+    margin: 40px 40px 5px 40px;
+    padding: 45px;
     padding-top: 15px;
     padding-bottom: 48px;
     text-align: center;
@@ -202,6 +202,11 @@ a, a:visited, a:hover, a:active {
     font-weight: bold;
     text-decoration: none;
 
+}
+
+.icons {
+    display: flex;
+    justify-content: space-around;
 }
 
 .box:hover {

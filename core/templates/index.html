@@ -18,8 +18,8 @@
                 {% if child.child_pic %}
                 <img src="/static/pics/{{child.child_pic}}">
                 {% endif %}
-                <br>{{ child.full_name }}
-                <div class="feed_notification" id="feed_{{ child.child_id }}"><i class="fas fa-wine-bottle"></i></div>
+                <br><div class="feed_notification" id="feed_{{ child.child_id }}"><i class="fas fa-wine-bottle"></i></div>
+                {{ child.full_name }}
             </div></a>
         {% if child.visit|length >= 1 %}
         <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check
