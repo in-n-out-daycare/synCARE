@@ -14,11 +14,14 @@
         <a href="{% url 'action_list' visit_id=child.visit.0.id %}#anchor">
             {% endif %}
             <div class="kidbox">
-                <div class="notification" id="{{ child.child_id }}"><i class="fas fa-baby"></i></div>
-                {% if child.child_pic %}
+            <div class="icons" >
+            
+                <div>test<div class="notification" id="{{ child.child_id }}"><img src="/static/pics/diaper.png" style="width:20px;height:auto;"></div></div><br>
+                <div>{% if child.child_pic %}
                 <img src="/static/pics/{{child.child_pic}}">
-                {% endif %}
-                <br><div class="feed_notification" id="feed_{{ child.child_id }}"><i class="fas fa-wine-bottle"></i></div>
+                {% endif %}</div>
+                <br><div>test<div class="feed_notification" id="feed_{{ child.child_id }}"><img src="/static/pics/bottle icon.png" style="width:20px;height:auto;"></div></div>
+                </div>
                 {{ child.full_name }}
             </div></a>
         {% if child.visit|length >= 1 %}

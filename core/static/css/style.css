@@ -9,6 +9,7 @@
     border-radius:100%;
     border-style: solid;
     border-color: white;
+    background: white;
     
 }
 
@@ -146,13 +147,13 @@ a, a:visited, a:hover, a:active {
 .notification {
     display: none;
     color:white;
-    position: absolute;
+    
 }
 
 .feed_notification {
     display: none;
     color: white;
-    position: absolute;
+    
 }
 
 
@@ -206,8 +207,12 @@ a, a:visited, a:hover, a:active {
 
 .icons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 200px;
+    color:purple;
 }
+
+
 
 .box:hover {
     background-color: #f99d02;
