@@ -5,7 +5,6 @@
 {% block content %}
 <script src="/static/js/main.js"></script>
 {% if user.is_authenticated %}
-{% comment %} <button class="notification_button">Get Notifications</button> {% endcomment %}
 <div class="wrapper">
     {% for child in children %}
     {% if iscaregiver %}
