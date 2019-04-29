@@ -268,7 +268,7 @@ def change_notification(request):
         if visit.child in Child.objects.filter(classroom__caregiver=request.user):
             activities = visit.activities
             outputs = list(activities.filter(activity_type=Activity.OUTPUT))
-            timedelta = datetime.timedelta(minutes=120)
+            timedelta = datetime.timedelta(seconds=30)
             
             if outputs == []:
                 latest_output = visit
@@ -280,7 +280,7 @@ def change_notification(request):
                 change_timer = timezone.now() - latest_output.start_time
                 
                 if latest_output.subtype_option == 'Dry':
-                    timedelta = datetime.timedelta(minutes=30)
+                    timedelta = datetime.timedelta(seconds=15)
 
 
             if change_timer > timedelta:
@@ -309,7 +309,7 @@ def feed_notification(request):
                 latest_input = inputs[-1]
                 feed_timer = timezone.now() - latest_input.start_time
 
-            if feed_timer > datetime.timedelta(minutes=120):
+            if feed_timer > datetime.timedelta(seconds=30):
                 feed_list.append(latest_input.child.child_id)
 
     context = {
