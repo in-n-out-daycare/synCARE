@@ -7,7 +7,7 @@
 <form class="comment_form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <p>Put any teacher comments here (i.e. Need more diapers.)</p>
+    <p>Enter any comments (i.e. need more diapers)</p>
     <input type="submit" value="Submit" class="checkbutton" style="background-color:purple;">
 </form>
 <p>
@@ -16,16 +16,14 @@
 
 <p><strong>Check In:</strong> {{ visit.check_in|date:"h:i a" }}
 
+{% for input in inputs %}
+    <p><strong>Food:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype_option }} {{ input.subtype }}</p>
+{% endfor %}
 {% for nap in naps %}
     <p><strong>Nap:</strong> {{ nap.start_time|date:"h:i a" }} - {{ nap.end_time|date:"h:i a"}}</p>
 {% endfor %}
 {% for output in outputs %}
     <p><strong>Diaper change:</strong> {{output.start_time|date:"h:i a" }} | {{ output.subtype_option }}</p>
 {% endfor%}
-{% for input in inputs %}
-    <p><strong>Food:</strong> {{ input.start_time|date:"h:i a"}} | {{ input.subtype_option }} {{ input.subtype }}</p>
-{% endfor %}
-
-{% comment %} <a href="{% url 'action_summary_email' visit_id=visit_id %}">Send Email</a> {% endcomment %}
 
 {% endblock %}

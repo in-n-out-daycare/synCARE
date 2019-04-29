@@ -17,24 +17,24 @@
         <div id="bottleChoices" class="dropdownContent">
             <form id="bottle_form" method="POST" action="{% url 'bottle' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
-                <button class="choicebutton" name="bottle_choice" value="All">All</button>
-                <button class="choicebutton" name="bottle_choice" value="3oz">Left 1 oz</button>
-                <button class="choicebutton" name="bottle_choice" value="2oz">Left 2 oz</button>
-                <button class="choicebutton" name="bottle_choice" value="1oz">Left 3 oz</button>
+                <button class="choicebutton" name="bottle_choice" value="Drank entire">Drank all</button>
+                <button class="choicebutton" name="bottle_choice" value="1 oz left in">1 oz left</button>
+                <button class="choicebutton" name="bottle_choice" value="2 oz left in">2 oz left</button>
+                <button class="choicebutton" name="bottle_choice" value="3 oz left in">3 oz left</button>
                 </div>
             </form>
         </div>
     
     </div>
 
-    <div class="foodbox" ><button onclick="myNurseFunction()" class="dropButton">Nurse</button>
+    <div class="foodbox" ><button onclick="myNurseFunction()" class="dropButton">Nursing</button>
     
         <div id="nurseChoices" class="dropdownContent">
             <form id="nurse_form" method="POST" action="{% url 'nurse' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
-                <button class="choicebutton" name="nurse_choice" value="10min">10min</button>
-                <button class="choicebutton" name="nurse_choice" value="20min">20min</button>
-                <button class="choicebutton" name="nurse_choice" value="30min">30min</button>
+                <button class="choicebutton" name="nurse_choice" value="10 min">10 min</button>
+                <button class="choicebutton" name="nurse_choice" value="20 min">20 min</button>
+                <button class="choicebutton" name="nurse_choice" value="30 min">30 min</button>
                 </div>    
             </form>
         </div>
@@ -47,7 +47,7 @@
         <div id="lunchChoices" class="dropdownContent">
             <form id="food_form" method="POST" action="{% url 'food' visit_id=visit_id %}">{% csrf_token %}
                 <div class="choicewrapper">
-                <button class="choicebutton" name="food_choice" value="none">None</button>
+                <button class="choicebutton" name="food_choice" value="did not eat">None</button>
                 <button class="choicebutton" name="food_choice" value="liked">Liked</button>
                 <button class="choicebutton" name="food_choice" value="loved">Loved</button>
                 </div>    
