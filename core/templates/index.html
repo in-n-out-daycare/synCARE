@@ -16,11 +16,11 @@
             <div class="kidbox">
             <div class="icons" >
             
-                <div>test<div class="notification" id="{{ child.child_id }}"><img src="/static/pics/diaper.png" style="width:20px;height:auto;"></div></div><br>
+                <div>test<div class="notification" id="{{ child.child_id }}"><img src="/static/pics/diaper.png" style="width:20px;height:auto; border-width: 1px;"></div></div><br>
                 <div>{% if child.child_pic %}
                 <img src="/static/pics/{{child.child_pic}}">
                 {% endif %}</div>
-                <br><div>test<div class="feed_notification" id="feed_{{ child.child_id }}"><img src="/static/pics/bottle icon.png" style="width:20px;height:auto;"></div></div>
+                <br><div>test<div class="feed_notification" id="feed_{{ child.child_id }}"><img src="/static/pics/bottle icon.png" style="width:20px;height:auto; border-width: 1px;"></div></div>
                 </div>
                 {{ child.full_name }}
             </div></a>
