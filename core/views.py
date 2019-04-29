@@ -317,3 +317,21 @@ def feed_notification(request):
     }
 
     return JsonResponse(context)
+
+def nap_notification(request):
+    visits=Visit.objects.filter(check_out__isnull=True)
+    nap_list = []
+
+    for visit in visits:
+        if visit.child in Child.objects.filter(classroom__caregiver=request.user):
+            naps = visit.activities.filter(activity_type=Activity.NAP)
+
+            for nap in naps:
+                if nap.end_time is None:
+                    nap_list.append(nap.child.child_id)
+                
+    context = {
+        'nap_list': nap_list,
+    }
+
+    return JsonResponse(context)

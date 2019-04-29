@@ -3,6 +3,7 @@
     
 }
 
+
 button {
     border-radius: 20px;
 }
@@ -17,7 +18,17 @@ button {
     
 }
 
+.nap_notification {
+    display: none;
+}
 
+.nap_notification img {
+    height:60px;
+    position: absolute;
+    border-style: none;
+    border-radius: 0%;
+    background: rgba(0, 0, 0, 0);
+}
 
 .tag_line {
     font-size: 25px;
