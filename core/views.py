@@ -203,7 +203,7 @@ def check_out(request, visit_id):
     inputs = Activity.objects.filter(visit_id=visit_id, activity_type=Activity.INPUT)
     comment = visit.comment
 
-    subject="WeeCare Daily Summary"
+    subject= f"WeeCare Daily Summary - {child}"
     to = [guardian.user.email for guardian in guardians]
     from_email = 'weecare@io.com'
 
@@ -222,7 +222,7 @@ def check_out(request, visit_id):
     msg.content_subtype = 'html'
     msg.send()
     visit.save()
-    messages.success(request, f"{visit.child} checked out and email sent to guardian - {to}.")
+    messages.success(request, f"{child} checked out, have a great day!")
 
     return redirect('index')
 
