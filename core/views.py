@@ -280,7 +280,7 @@ def change_notification(request):
                 change_timer = timezone.now() - latest_output.start_time
                 
                 if latest_output.subtype_option == 'Dry':
-                    timedelta = datetime.timedelta(seconds=15)
+                    timedelta = datetime.timedelta(minutes=30)
 
 
             if change_timer > timedelta:
@@ -309,7 +309,7 @@ def feed_notification(request):
                 latest_input = inputs[-1]
                 feed_timer = timezone.now() - latest_input.start_time
 
-            if feed_timer > datetime.timedelta(seconds=15):
+            if feed_timer > datetime.timedelta(minutes=120):
                 feed_list.append(latest_input.child.child_id)
 
     context = {
