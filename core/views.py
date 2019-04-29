@@ -277,7 +277,7 @@ def change_notification(request):
                 latest_output = outputs[-1]
                 change_timer = timezone.now() - latest_output.start_time
 
-            if change_timer > datetime.timedelta(seconds=15):
+            if change_timer > datetime.timedelta(seconds=10):
                 change_list.append(latest_output.child.child_id)
 
     context = {
@@ -303,7 +303,7 @@ def feed_notification(request):
                 latest_input = inputs[-1]
                 feed_timer = timezone.now() - latest_input.start_time
 
-            if feed_timer > datetime.timedelta(seconds=15):
+            if feed_timer > datetime.timedelta(seconds=8):
                 feed_list.append(latest_input.child.child_id)
 
     context = {

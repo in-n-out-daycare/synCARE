@@ -42,7 +42,8 @@ a, u {
 }
 
 a, a:visited, a:hover, a:active {
-    color: inherit;
+    /* color: inherit; */
+    /* removing to let font be white */
 }
 
 .wrapper {
