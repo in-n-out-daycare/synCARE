@@ -137,7 +137,7 @@ def bottle(request, visit_id):
         child=visit.child,
     )
     bottle.save()
-    messages.success(request, f"{visit.child} {option} bottle saved!")
+    messages.success(request, f"{visit.child} bottle saved!")
 
     return redirect('index')
 

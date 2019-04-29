@@ -3,6 +3,10 @@
     
 }
 
+button {
+    border-radius: 20px;
+}
+
 .kidbox img {
     width: 60px;
     height:60px;
@@ -13,9 +17,7 @@
     
 }
 
-.log_register:hover {
-    box-shadow: 0 12px 16px 0 rgba(44,103,181,0.24), 0 17px 50px 0 rgba(44,103,181,0.19);
-}
+
 
 .tag_line {
     font-size: 25px;
@@ -109,7 +111,7 @@ a, a:visited, a:hover, a:active {
     font-size: 35px;
     font-weight: bold;
     text-decoration: none;
-
+    border-width: 0px;
 
     
 }
