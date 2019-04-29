@@ -4,6 +4,7 @@
 
 {% block content %}
 <script src="/static/js/main.js"></script>
+
 {% if user.is_authenticated %}
 <div class="wrapper">
     {% for child in children %}
@@ -15,19 +16,18 @@
             <div class="kidbox">
             <div class="icons" >
             
-                <div>test<div class="notification" id="{{ child.child_id }}"><img src="/static/pics/diaper.png" style="width:20px;height:auto;"></div></div><br>
+                <div>test<div class="notification" id="{{ child.child_id }}"><img src="/static/pics/diaper.png" style="width:20px;height:auto; border-width: 2px;border-color:#f99d02;"></div></div><br>
                 <div>{% if child.child_pic %}
                 <img src="/static/pics/{{child.child_pic}}">
                 {% endif %}</div>
-                <br><div>test<div class="feed_notification" id="feed_{{ child.child_id }}"><img src="/static/pics/bottle icon.png" style="width:20px;height:auto;"></div></div>
+                <br><div>test<div class="feed_notification" id="feed_{{ child.child_id }}"><img src="/static/pics/bottle icon.png" style="width:20px;height:auto; border-width: 2px;border-color:#f99d02;"></div></div>
                 </div>
                 {{ child.full_name }}
             </div></a>
         {% if child.visit|length >= 1 %}
-        <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check
-                out</button></a>
+        <a href="{% url 'check_out' visit_id=child.visit.0.id %}"><button class="checkbutton out">Check-out</button></a>
         {% else %}
-        <a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton in">Check in</button></a>
+        <a href="{% url 'check_in' child_id=child.child_id %}"><button class="checkbutton in">Check-in</button></a>
         {% endif %}
 
         {% endif %}
@@ -69,3 +69,4 @@
     {% endif %}
     {% endblock %}
 </div>
+
