@@ -12,17 +12,19 @@
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+<p>{% blocktrans with site.name as site_name %}Please sign in with your 
+existing Google account.</p>
 
 <div class="socialaccount_ballot">
 
   <p class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    <a title="Google" class="socialaccount_providergoogle" href="/accounts/google/login/?process=login"><img src="/static/pics/btn_google_signin_dark_normal_web.png"></a>
   </p>
 
 </div>
+
+<p>Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 {% include "socialaccount/snippets/login_extra.html" %}
 
@@ -31,7 +33,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
 
-<form class="login" method="POST" action="{% url 'account_login' %}">
+<form class="login_allauth" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
   {{ form.as_p }}
   {% if redirect_field_value %}
