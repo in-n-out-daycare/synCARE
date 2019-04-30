@@ -202,13 +202,13 @@ a, a:visited, a:hover, a:active {
 .kidbox {
     display: block;
     justify-content: center;
-    width:200px;
+    width:240px;
     height: 80px;
     color: white;
     
     border-radius: 20px;
     margin: 40px 40px 5px 40px;
-    padding: 45px;
+    padding: 25px;
     padding-top: 15px;
     padding-bottom: 48px;
     text-align: center;
@@ -222,7 +222,7 @@ a, a:visited, a:hover, a:active {
 .icons {
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 240px;
     color:purple;
 }
 
