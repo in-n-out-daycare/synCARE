@@ -40,6 +40,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('home/change_notification/', views.change_notification, name='change_notification'),
     path('home/feed_notification/', views.feed_notification, name='feed_notification'),
+    path('home/nap_notification/', views.nap_notification, name='nap_notification'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

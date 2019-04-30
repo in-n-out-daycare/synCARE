@@ -1,5 +1,6 @@
 const changeNotificationUrl = '/home/change_notification/'
 const feedNotificationUrl = '/home/feed_notification/'
+const napNotificationUrl = '/home/nap_notification/'
 
 function getChangeNotification (changeNotificationUrl) {
   let promise = fetch(changeNotificationUrl).then(function (response) {
@@ -30,7 +31,6 @@ function getFeedNotification (feedNotificationUrl) {
     }
     return response.json()
   })
-  console.log(promise)
   return promise
 }
 
@@ -41,6 +41,28 @@ function getFeedNotificationData (feedNotificationUrl) {
         for (let child of notification) {
           feedChildDiv = document.getElementById(`feed_${child}`)
           feedChildDiv.classList.add('show')
+        }
+      }
+    })
+}
+
+function getNapNotification (napNotificationUrl) {
+  let promise = fetch(napNotificationUrl).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText)
+    }
+    return response.json()
+  })
+  return promise
+}
+
+function getNapNotificationData (napNotificationUrl) {
+  getNapNotification(napNotificationUrl)
+    .then(napNotificationData => {
+      for (let notification of Object.values(napNotificationData)) {
+        for (let child of notification) {
+          napChildDiv = document.getElementById(`nap_${child}`)
+          napChildDiv.classList.add('show')
         }
       }
     })
@@ -132,5 +154,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 1000)
   setInterval(function () {
     getFeedNotificationData(feedNotificationUrl)
+  }, 1000)
+  setInterval(function () {
+    getNapNotificationData(napNotificationUrl)
   }, 1000)
 })
