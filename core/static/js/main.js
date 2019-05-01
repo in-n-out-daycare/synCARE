@@ -1,3 +1,4 @@
+
 const changeNotificationUrl = '/home/change_notification/'
 const feedNotificationUrl = '/home/feed_notification/'
 const napNotificationUrl = '/home/nap_notification/'
@@ -17,8 +18,10 @@ function getChangeNotificationData (changeNotificationUrl) {
     .then(notificationData => {
       for (let notification of Object.values(notificationData)) {
         for (let child of notification) {
-          childDiv = document.getElementById(`${child}`)
-          childDiv.classList.add('show')
+          if (document.getElementById(`${child}`)) {
+            childDiv = document.getElementById(`${child}`)
+            childDiv.classList.add('show')
+          }
         }
       }
     })
@@ -39,8 +42,10 @@ function getFeedNotificationData (feedNotificationUrl) {
     .then(feedNotificationData => {
       for (let notification of Object.values(feedNotificationData)) {
         for (let child of notification) {
-          feedChildDiv = document.getElementById(`feed_${child}`)
-          feedChildDiv.classList.add('show')
+          if (document.getElementById(`feed_${child}`)) {
+            feedChildDiv = document.getElementById(`feed_${child}`)
+            feedChildDiv.classList.add('show')
+          }
         }
       }
     })
@@ -61,8 +66,10 @@ function getNapNotificationData (napNotificationUrl) {
     .then(napNotificationData => {
       for (let notification of Object.values(napNotificationData)) {
         for (let child of notification) {
-          napChildDiv = document.getElementById(`nap_${child}`)
-          napChildDiv.classList.add('show')
+          if (document.getElementById(`nap_${child}`)) {
+            napChildDiv = document.getElementById(`nap_${child}`)
+            napChildDiv.classList.add('show')
+          }
         }
       }
     })
